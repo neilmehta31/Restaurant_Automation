@@ -1,7 +1,21 @@
 const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 const app = express();
 
+require('dotenv').config();
+
 app.use(express.json());
+app.use(cors());
+
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+
+const connection = mongoose.connection;
+connection.once('open', () => {
+    
+console.log("MongoDB database connection established successfully");
+});
 
 app.get('/',(req,res)=> {
     res.send('Home page');
