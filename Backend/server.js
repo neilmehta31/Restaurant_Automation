@@ -9,29 +9,36 @@ app.use(express.json());
 app.use(cors());
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(uri, { useUnifiedTopology: true, useCreateIndex: true, useNewUrlParser: true });
 // Added the codeStream bot to the MS teams SE Project channel
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 });
 
-app.get('/',(req,res)=> {
-    res.send('Home page');
-});
+// app.get('/', (req, res) => {
+//     res.send('Home page');
+// });
 
 
-app.get('/customer',(req,res)=> {
-    res.send('Customer page');
-});
+// app.get('/customer', (req, res) => {
+//     res.send('Customer page');
+// });
 
-app.get('/employee',(req,res)=>{
-res.send('Employee page');
-});
+// app.get('/employee', (req, res) => {
+//     res.send('Employee page');
+// });
 
-app.get('/customer/login',(req,res)=> {
-    res.send('Customer page after login');
-});
+// app.get('/customer/login', (req, res) => {
+//     res.send('Customer page after login');
+// });
+
+
+const customerRouter = require('./routes/customer.js');
+const employeeRouter = require('./routes/employee.js');
+
+app.use('/customer/signup', customerRouter);
+app.use('/employee/signup', employeeRouter);
 
 const port = process.env.PORT || 3000;
-app.listen(port,()=>{console.log(`Server listening on port ${port}...`)});
+app.listen(port, () => { console.log(`Server listening on port ${port}...`) });
