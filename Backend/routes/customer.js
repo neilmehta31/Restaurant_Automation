@@ -13,6 +13,7 @@ router.route('/delete/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error : ' + err));
 })
 
+
 router.route('/add').post((req, res) => {
     const firstname = req.body.firstname;
     const surname = req.body.surname;
