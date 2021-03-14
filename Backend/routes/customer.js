@@ -7,6 +7,12 @@ router.route('/all').get((req, res) => {
         .catch(error => res.status(400).json('Error: ' + error));
 });
 
+router.route('/delete/:id').delete((req, res) => {
+    Customer.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Customer data deleted. '))
+        .catch(err => res.status(400).json('Error : ' + err));
+})
+
 router.route('/add').post((req, res) => {
     const firstname = req.body.firstname;
     const surname = req.body.surname;
