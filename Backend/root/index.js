@@ -33,7 +33,11 @@ app.use(passport.session());
 
 app.set('view engine', 'ejs');
 
+//Front end with provide path of the success file
+//frond end should declare user
 app.get('/success', (req, res) => res.send(userProfile));
+//app.get('/success',(req,res)=>res.render('pages/success'));
+
 app.get('/error', (req, res) => res.send("error logging in"));
 
 passport.serializeUser(function(user, cb) {
