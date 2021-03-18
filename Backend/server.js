@@ -35,12 +35,12 @@ connection.once('open', () => {
 
 
 const customerRouter = require('./routes/customer.js');
-const employeeRouter = require('./routes/employee.js');
+// const employeeRouter = require('./routes/employee.js');
 const managerRouter = require('./routes/manager.js');
 
 app.use('/api/customer', customerRouter);
-app.use('/api/employee', employeeRouter);
-app.use('/api/manager/meals', managerRouter);
+// app.use('/api/employee', employeeRouter);        //For employee signin
+app.use('/api/manager', managerRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => { console.log(`Server listening on port ${port}...`) });
