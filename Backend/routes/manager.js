@@ -1,5 +1,8 @@
 const router = require('express').Router();
 
+const bcrypt = require('bcrypt');
+require('dotenv').config();
+
 let meals = require('../models/manager.meals.model');
 let Employee = require('../models/employee.model');
 
@@ -67,18 +70,72 @@ router.route('/employee/delete/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error : ' + err));
 });
 
-//Password encryption and email regex and other constrains to be added as in customer.js
+//DONE : Password encryption and email regex and other constrains to be added as in customer.js
+
+const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
 router.route('/employee/add').post((req, res) => {
-    const firstname = req.body.firstname;
-    const surname = req.body.surname;
-    const email = req.body.email;
-    const password = req.body.password;
+    let { empId, firstname, surname, email, password } = req.body;
+    let errors = [];
+    if (!empId) {
+        errors.push({ empId: "required" });
+    }
+    if (!firstname) {
+        errors.push({ firstname: "required" });
+    }
+    if (!surname) {
+        errors.push({ surname: "required" });
+    }
+    if (!email) {
+        errors.push({ email: "required" });
+    }
+    if (!emailRegexp.test(email)) {
+        errors.push({ email: "invalid" });
+    }
+    if (!password) {
+        errors.push({ password: "required" });
+    }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Employee.findOne({ email: email })
+        .then(employee => {
+            if (employee) {
+                return res.status(422).json({ errors: [{ employee: "email already exists for another employee" }] });
+            } else {
+                const employee = new Employee({
 
-    const newEmployee = new Employee({ firstname, surname, email, password });
-
-    newEmployee.save()
-        .then(() => res.json({ MESSAGE: 'New Employee added to the database!', Result: newEmployee }))
-        .catch(err => res.status(400).json('Error: ' + err));
+                    empId: empId,
+                    firstname: firstname,
+                    surname: surname,
+                    email: email,
+                    password: password,
+                });
+                bcrypt.genSalt(10, function (err, salt) {
+                    bcrypt.hash(password, salt, function (err, hash) {
+                        if (err) throw err;
+                        employee.password = hash;
+                        employee.save()
+                            .then(response => {
+                                res.status(200).json({
+                                    MESSAGE: 'Employee is HIRED up and in the database',
+                                    success: true,
+                                    result: response
+                                })
+                            })
+                            .catch(err => {
+                                res.status(500).json({
+                                    errors: [{ error: err }]
+                                });
+                            });
+                    });
+                });
+            }
+        }).catch(err => {
+            res.status(500).json({
+                errors: [{ error: 'Something went wrong' }]
+            });
+        })
 });
 
 
@@ -91,12 +148,26 @@ router.route('/employee/update/:id').post((req, res) => {
             employee.surname = req.body.surname;
             employee.email = req.body.email;
             employee.password = req.body.password;
-
-            employee.save()
-                .then(() => res.json({ MESSAGE: 'The employee database is updated.', Result: employee }))
-                .catch(err => res.status(400).json('Error : ' + err));
-        })
-        .catch(err => res.status(400).json('Error :' + err));
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(employee.password, salt, function (err, hash) {
+                    if (err) throw err;
+                    employee.password = hash;
+                    employee.save()
+                        .then(response => {
+                            res.status(200).json({
+                                MESSAGE: 'Employee is UPDATED in the database',
+                                success: true,
+                                result: response
+                            })
+                        })
+                        .catch(err => {
+                            res.status(500).json({
+                                errors: [{ error: err }]
+                            });
+                        });
+                });
+            });
+        }).catch(err => res.status(400).json('Error :' + err));
 });
 
 

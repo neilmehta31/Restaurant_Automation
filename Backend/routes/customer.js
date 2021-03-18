@@ -24,10 +24,10 @@ router.route('/signup').post((req, res, next) => {
     let { firstname, surname, email, password, password_confirmation } = req.body;
     let errors = [];
     if (!firstname) {
-        errors.push({ name: "required" });
+        errors.push({ firstname: "required" });
     }
     if (!surname) {
-        errors.push({ name: "required" });
+        errors.push({ surname: "required" });
     }
     if (!email) {
         errors.push({ email: "required" });
