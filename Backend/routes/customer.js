@@ -1,5 +1,12 @@
 const router = require('express').Router();
 let Customer = require('../models/customer.model');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+require('dotenv').config();
+const {
+    createJWT,
+} = require('../Utility/authJWT');
+const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 router.route('/all').get((req, res) => {
     Customer.find()
@@ -11,19 +18,135 @@ router.route('/delete/:id').delete((req, res) => {
     Customer.findByIdAndDelete(req.params.id)
         .then(() => res.json('Customer data deleted. '))
         .catch(err => res.status(400).json('Error : ' + err));
-})
+});
 
-router.route('/add').post((req, res) => {
-    const firstname = req.body.firstname;
-    const surname = req.body.surname;
-    const email = req.body.email;
-    const password = req.body.password;
+router.route('/signup').post((req, res, next) => {
+    let { firstname, surname, email, password, password_confirmation } = req.body;
+    let errors = [];
+    if (!firstname) {
+        errors.push({ name: "required" });
+    }
+    if (!surname) {
+        errors.push({ name: "required" });
+    }
+    if (!email) {
+        errors.push({ email: "required" });
+    }
+    if (!emailRegexp.test(email)) {
+        errors.push({ email: "invalid" });
+    }
+    if (!password) {
+        errors.push({ password: "required" });
+    }
+    if (!password_confirmation) {
+        errors.push({
+            password_confirmation: "required",
+        });
+    }
+    if (password != password_confirmation) {
+        errors.push({ password: "mismatch" });
+    }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Customer.findOne({ email: email })
+        .then(customer => {
+            if (customer) {
+                return res.status(422).json({ errors: [{ customer: "email already exists" }] });
+            } else {
+                const customer = new Customer({
+                    firstname: firstname,
+                    surname: surname,
+                    email: email,
+                    password: password,
+                });
+                bcrypt.genSalt(10, function (err, salt) {
+                    bcrypt.hash(password, salt, function (err, hash) {
+                        if (err) throw err;
+                        customer.password = hash;
+                        customer.save()
+                            .then(response => {
+                                res.status(200).json({
+                                    MESSAGE: 'User is signd up and in the database',
+                                    success: true,
+                                    result: response
+                                })
+                            })
+                            .catch(err => {
+                                res.status(500).json({
+                                    errors: [{ error: err }]
+                                });
+                            });
+                    });
+                });
+            }
+        }).catch(err => {
+            res.status(500).json({
+                errors: [{ error: 'Something went wrong' }]
+            });
+        })
+});
 
-    const newCustomer = new Customer({ firstname, surname, email, password });
 
-    newCustomer.save()
-        .then(() => res.json('New Customer added to the database!'))
-        .catch(err => res.status(400).json('Error: ' + err));
+router.route('/signin').post((req, res) => {
+    let { email, password } = req.body;
+    let errors = [];
+    if (!email) {
+        errors.push({ email: "required" });
+    }
+    if (!emailRegexp.test(email)) {
+        errors.push({ email: "invalid email" });
+    }
+    if (!password) {
+        errors.push({ passowrd: "required" });
+    }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Customer.findOne({ email: email }).then(customer => {
+        if (!customer) {
+            return res.status(404).json({
+                errors: [{ customer: "not found" }],
+            });
+        } else {
+            bcrypt.compare(password, customer.password)
+                .then((isMatch) => {
+                    if (isMatch) {
+                        let access_token = createJWT(
+                            customer.email,
+                            customer._id,
+                            3600
+                        );
+                        jwt.verify(access_token, process.env.TOKEN_SECRET, (err,
+                            decoded) => {
+                            if (err) {
+                                res.status(500).json({ MESSAGE: 'Error at line 128 of customer.js', erros: err });
+                            }
+                            if (decoded) {
+                                return res.status(200).json({
+                                    MESSAGE: 'customer is logged in.',
+                                    success: true,
+                                    token: access_token,
+                                    message: customer
+                                });
+                            }
+                        });
+                    } else {
+                        return res.status(400).json({
+                            errors: [{
+                                password:
+                                    "incorrect",
+                            }]
+                        });
+                    }
+
+                }).catch(err => {
+                    console.log({ MESSAGE: 'Error at line 140 of customer.js', MSG_pass_req: password, MSG_data: customer.password, erros: err });
+                });
+        }
+    }).catch(err => {
+        res.status(500).json({ MESSAGE: 'Error at line 144 of customer.js', erros: err });
+    });
 });
 
 module.exports = router;
