@@ -149,4 +149,74 @@ router.route('/signin').post((req, res) => {
     });
 });
 
+router.route('/forgotPassword').post((req, res) => {
+    let { email, password } = req.body;
+    let errors = [];
+    if (!email) {
+        errors.push({ email: "required" });
+    }
+    if (!emailRegexp.test(email)) {
+        errors.push({ email: "invalid email" });
+    }
+    if (!password) {
+        errors.push({ passowrd: "required" });
+    }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Customer.findOne({ email: email })
+        .then(customer => {
+            if (!customer) {
+                return res.status(404).json({
+                    errors: [{ customer: "not found" }],
+                });
+            } else {
+
+                customer.firstname = customer.firstname,
+                    customer.surname = customer.surname,
+                    customer.email = customer.email,
+                    customer.password = password,
+                    // customer.save()
+                    //     .then(response => {
+                    //         res.status(200).json({
+                    //             MESSAGE: 'User password is updated in the database. Now Sign in using new password!!',
+                    //             success: true,
+                    //             result: response
+                    //         })
+                    //     })
+                    //     .catch(err => {
+                    //         res.status(500).json({
+                    //             errors: [{ error: err }],
+                    //             MESSAGE: [{ firstname: customer.firstname, lastname: customer.surname, email: customer.email, newpassword: passowrd }]
+                    //         });
+                    //     });
+                    bcrypt.genSalt(10, function (err, salt) {
+                        bcrypt.hash(password, salt, function (err, hash) {
+                            if (err) throw err;
+                            customer.password = hash;
+                            customer.save()
+                                .then(response => {
+                                    res.status(200).json({
+                                        MESSAGE: 'User password is updated in the database. Now Sign in using new password!!',
+                                        success: true,
+                                        result: response
+                                    })
+                                })
+                                .catch(err => {
+                                    res.status(500).json({
+                                        errors: [{ error: err }],
+                                        MESSAGE: [{ firstname: customer.firstname, lastname: customer.surname, email: customer.email, newpassword: passowrd }]
+                                    });
+                                });
+                        });
+                    });
+
+            }
+
+        }).catch(err => {
+            res.status(500).json({
+                errors: [{ error: 'Something went wrong' }]
+            });
+        })
+});
 module.exports = router;
