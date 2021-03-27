@@ -29,7 +29,11 @@ router.route('/meals/add').post((req, res) => {
 
 router.route('/meals/:id').get((req, res) => {
     meals.findById(req.params.id)
-        .then(meal => res.json(meal))
+        .then(meal => {
+            res.json({ meal: meal, meal_timer: meal.preptime * 60 });
+            let timerId = setTimeout(() => { res.status(400).json("Please wait while the food is being prepared!") }, meal.preptime * 60);
+            alert(timerId);
+        })
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
