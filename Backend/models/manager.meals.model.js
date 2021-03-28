@@ -14,6 +14,11 @@ const mealsSchema = new Schema({
         trim: true,
         unique: true
     },
+    description: {
+        type: String,
+        required: false,
+        trim: true,
+    },
     preptime: {
         type: Number,
         required: true,

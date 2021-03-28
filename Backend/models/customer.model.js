@@ -13,6 +13,12 @@ const customerSchema = new Schema({
         required: false,
         trim: true
     },
+    phoneNo: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,

@@ -21,7 +21,7 @@ router.route('/delete/:id').delete((req, res) => {
 });
 
 router.route('/signup').post((req, res, next) => {
-    let { firstname, surname, email, password, password_confirmation } = req.body;
+    let { firstname, surname, phoneNo, email, password, password_confirmation } = req.body;
     let errors = [];
     if (!firstname) {
         errors.push({ firstname: "required" });
@@ -30,6 +30,9 @@ router.route('/signup').post((req, res, next) => {
         errors.push({ surname: "required" });
     }
     if (!email) {
+        errors.push({ email: "required" });
+    }
+    if (!phoneNo) {
         errors.push({ email: "required" });
     }
     if (!emailRegexp.test(email)) {
@@ -55,8 +58,10 @@ router.route('/signup').post((req, res, next) => {
                 return res.status(422).json({ errors: [{ customer: "email already exists" }] });
             } else {
                 const customer = new Customer({
+
                     firstname: firstname,
                     surname: surname,
+                    phoneNo: phoneNo,
                     email: email,
                     password: password,
                 });

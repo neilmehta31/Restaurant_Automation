@@ -3,6 +3,8 @@ const router = require('express').Router();
 let Employee = require('../models/employee.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const Employee_Hours = require('../models/employee.hours.model')
+
 require('dotenv').config();
 const {
     createJWT,
@@ -45,11 +47,26 @@ router.route('/signin').post((req, res) => {
                                 res.status(500).json({ MESSAGE: 'Error at line 128 of employee.js', erros: err });
                             }
                             if (decoded) {
+                                let empId = employee.empId;
+                                let entryTime = new Date();
+                                let employee_hrs = new Employee_Hours({ empId, entryTime });
+                                employee_hrs.updateOne()
+                                    .then(response => {
+                                        console.log(
+                                            'MESSAGE: Employee Clocked IN success: true\nResponse : ' + response
+                                        )
+                                    })
+                                    .catch(err => {
+                                        console.log(
+                                            'error : ' + err);
+                                    });
                                 return res.status(200).json({
                                     MESSAGE: 'employee is logged in.',
                                     success: true,
                                     token: access_token,
-                                    message: employee
+                                    employee: employee,
+                                    employeeHrs: employee_hrs
+
                                 });
                             }
                         });
