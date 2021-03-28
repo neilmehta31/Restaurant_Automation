@@ -250,22 +250,68 @@ router.route('/tablesUpdation/reserve/:id').post((req, res) => {
     }
     Tables.findById(req.params.id)
         .then(table => {
-            table.tableId = table.tableId;
-            table.available = available;
-            table.reserved = reserved;
-            table.save()
-                .then(response => res.json({
-                    result: response,
-                    table: table,
-                    MESSAGE: 'Seat Reserved',
-                    success: true,
-                })).catch(err => res.status(500).json({
-                    table_tableId: table.tableId,
-                    errors: [{ error: err }],
-                    MESSAGE: 'Unable to reserve the selected seat',
-                    success: false,
-                    table: table
-                }))
+            if (table.available && !table.reserve) {
+                table.tableId = table.tableId;
+                table.available = available;
+                table.reserved = reserved;
+                table.save()
+                    .then(response => res.json({
+                        result: response,
+                        table: table,
+                        MESSAGE: 'Seat Reserved',
+                        success: true,
+                    })).catch(err => res.status(500).json({
+                        table_tableId: table.tableId,
+                        errors: [{ error: err }],
+                        MESSAGE: 'Unable to reserve the selected seat',
+                        success: false,
+                        table: table
+                    }))
+            }
+
+        }).catch(err => {
+            res.status(400).json({
+                errors: [{
+                    error: 'Something went wrong',
+                    listOfErrors: [{ error: err }]
+                }]
+            });
+        })
+});
+
+
+router.route('/tablesUpdation/unreserve/:id').post((req, res) => {
+
+    const available = true;
+    const unreserve = false;
+    let errors = [];
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Tables.findById(req.params.id)
+        .then(table => {
+            if (!table.available && table.reserved) {
+                table.tableId = table.tableId;
+                // res.json({ available: table.available, reserve: table.reserved });
+                table.available = available;
+                table.reserved = unreserve;
+                table.save()
+                    .then(response => res.json({
+                        result: response,
+                        MESSAGE: 'Seat Reservation removed. Seat available for booking for public',
+                        success: true,
+                    })).catch(err => res.status(500).json({
+                        table_tableId: table.tableId,
+                        errors: [{ error: err }],
+                        MESSAGE: 'UNABLE TO REMOVE the reserved tag from the selected seat',
+                        success: false,
+                        table: table
+                    }));
+            } else {
+
+                res.json({ MESSAGE: 'table is not reservd in the first place to unreserve it ' });
+            }
+
         }).catch(err => {
             res.status(400).json({
                 errors: [{
@@ -275,6 +321,7 @@ router.route('/tablesUpdation/reserve/:id').post((req, res) => {
             });
         })
 })
+
 
 
 

@@ -1,24 +1,27 @@
 const router = require('express').Router();
-let Customer = require('../models/customer.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const {
     createJWT,
 } = require('../Utility/authJWT');
+
+let Customer = require('../models/customer.model');
+let Tables = require('../models/tables.model');
+
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-router.route('/all').get((req, res) => {
-    Customer.find()
-        .then(customers => res.json(customers))
-        .catch(error => res.status(400).json('Error: ' + error));
-});
+// router.route('/all').get((req, res) => {
+//     Customer.find()
+//         .then(customers => res.json(customers))
+//         .catch(error => res.status(400).json('Error: ' + error));
+// });
 
-router.route('/delete/:id').delete((req, res) => {
-    Customer.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Customer data deleted. '))
-        .catch(err => res.status(400).json('Error : ' + err));
-});
+// router.route('/delete/:id').delete((req, res) => {
+//     Customer.findByIdAndDelete(req.params.id)
+//         .then(() => res.json('Customer data deleted. '))
+//         .catch(err => res.status(400).json('Error : ' + err));
+// });
 
 router.route('/signup').post((req, res, next) => {
     let { firstname, surname, phoneNo, email, password, password_confirmation } = req.body;
@@ -224,4 +227,27 @@ router.route('/forgotPassword').post((req, res) => {
             });
         })
 });
+
+
+
+
+// Customer choosing the desired table
+router.route('/tableSelection/:id').post((req, res) => {
+    Tables.findById(req.params.id)
+        .then(table => {
+            let available = table.available;
+            let reserved = table.reserved;
+            if (available && !reserved) {
+                table.available = false;
+                table.tableId = table.tableId;
+                table.save()
+                    .then(response => { res.json({ result: response }) })
+                    .catch(err => res.status(400).json({ error: err }));
+            } else {
+                res.json({ result: 'unable to book the table. Please try again later!' })
+            }
+        }).catch(err => res.status(400).json({ errro: err }));
+});
+
+
 module.exports = router;
