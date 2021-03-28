@@ -11,10 +11,8 @@ let meals = require('../models/manager.meals.model');
 let Employee = require('../models/employee.model');
 let Manager = require('../models/manager.model');
 let Tables = require('../models/tables.model');
-const Table = require('../models/tables.model');
-const Customer = require('../models/customer.model');
-
-
+let Customer = require('../models/customer.model');
+let Transaction = require('../models/transaction.model');
 
 
 
@@ -322,6 +320,18 @@ router.route('/tablesUpdation/unreserve/:id').post((req, res) => {
         })
 })
 
+
+
+
+
+
+
+//Manager transaction details view report
+router.route('/transaction/report').get((req, res) => {
+    Transaction.find()
+        .then(transaction => res.json(JSON.stringify(transaction)))
+        .catch(error => res.status(400).json('Error: ' + error));
+});
 
 
 

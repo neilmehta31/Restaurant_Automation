@@ -3,12 +3,32 @@ const https = require('https')
 const path = require('path')
 const fs = require('fs')
 const qs = require('querystring')
+const mongoose = require('mongoose')
+const express = require('express');
+const cors = require('cors');
+
+const Transaction = require('../../models/transaction.model');
 
 // Import paytm checksum utility
 const PaytmChecksum = require('../checksum')
 const PaytmConfig = require('../config')
+const { response } = require('express')
 
 const server = http.createServer()
+
+const app = express();
+
+require('dotenv').config();
+
+app.use(express.json());
+app.use(cors());
+
+const uri = 'mongodb+srv://neil_mehta:restaurant_automation@cluster0.81auc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+mongoose.connect(uri, { useUnifiedTopology: true, useCreateIndex: true, useNewUrlParser: true });
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+});
 
 server.on('request', (req, res) => {
   switch (req.url) {
@@ -179,7 +199,12 @@ server.on('request', (req, res) => {
               });
 
               post_res.on('end', function () {
-                console.log('Response: ', response);
+                // console.log('Response: ', response);
+                let data_transaction_database = response;
+                transaction = new Transaction({ transaction: JSON.stringify(data_transaction_database) });
+                transaction.save()
+                  .then(response_trnsc => console.log('Result: success\nResponse : ' + response_trnsc))
+                  .catch(err => console.log('Errors : ' + err));
                 res.write(response)
                 res.end()
               });

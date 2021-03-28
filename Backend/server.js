@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 const app = express();
 
 require('dotenv').config();
@@ -36,7 +37,7 @@ const employeeRouter = require('./routes/employee.js');
 const managerRouter = require('./routes/manager.js');
 
 app.use('/api/customer', customerRouter);
-app.use('/api/employee', employeeRouter);        //For employee signin
+app.use('/api/employee', employeeRouter);
 app.use('/api/manager', managerRouter);
 
 const port = process.env.PORT || 3000;
