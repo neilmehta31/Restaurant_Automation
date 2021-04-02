@@ -34,20 +34,72 @@ import { bugs, website, server } from "variables/general.js";
 import {
   dailySalesChart,
   emailsSubscriptionChart,
-  completedTasksChart
+  completedTasksChart,
 } from "variables/charts.js";
 
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+const styles = {
+  cardCategoryWhite: {
+    "&,& a,& a:hover,& a:focus": {
+      color: "rgba(255,255,255,.62)",
+      margin: "0",
+      fontSize: "14px",
+      marginTop: "0",
+      marginBottom: "0",
+    },
+    "& a,& a:hover,& a:focus": {
+      color: "#FFFFFF",
+    },
+  },
+  cardTitleWhite: {
+    color: "#FFFFFF",
+    marginTop: "0px",
+    minHeight: "auto",
+    fontWeight: "300",
+    fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
+    marginBottom: "3px",
+    textDecoration: "none",
+    "& small": {
+      color: "#777",
+      fontSize: "65%",
+      fontWeight: "400",
+      lineHeight: "1",
+    },
+  },
+};
 
 const useStyles = makeStyles(styles);
+const editSyles = makeStyles({
+  root: {
+    background: "blue",
+  },
+});
 
-export default function Dashboard() {
+export default function PlaceOrder() {
   const classes = useStyles();
+  const editSt = editSyles();
   return (
-    <div>
-      <GridContainer>
-        
-      </GridContainer>
-    </div>
+    <GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
+        <Card>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>Your Order</h4>
+          </CardHeader>
+          <CardBody>
+            <Table
+              tableHeaderColor="primary"
+              tableHead={["Item", "Cost"]}
+              tableData={[
+                ["Veg Pizza", "₹" + 160],
+                ["Paneer Pizza", "₹200"],
+                ["Peri Peri Pizza", "₹160"],
+                ["Cheese Corn Pizza", "₹180"],
+                ["Paneer Pizza", "₹160"],
+                ["", "₹860"],
+              ]}
+            />
+          </CardBody>
+        </Card>
+      </GridItem>
+    </GridContainer>
   );
 }

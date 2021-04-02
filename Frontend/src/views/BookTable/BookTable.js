@@ -49,19 +49,6 @@ export class TableLayout extends Component {
             </div>
           </div>
         </div>
-        <footer>
-          <p className="centertext">
-            <span className="tablebookedcolor m-2 heightx textsize">
-              booked
-            </span>
-            <span className="tablereservedcolor m-2 heightx textsize">
-              reserved
-            </span>
-            <span className="tableavailablecolor m-2 heightx textsize">
-              available
-            </span>
-          </p>
-        </footer>
       </div>
     );
   }

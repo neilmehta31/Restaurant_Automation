@@ -55,38 +55,43 @@ export default function PlaceOrder() {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Pizza</h4>
-            <p className={classes.cardCategoryWhite}>aa this a pizza</p>
+            <h4 className={classes.cardTitleWhite}>Employee Info</h4>
+            <p className={classes.cardCategoryWhite}>
+              The details of the staff working at the restraunt
+            </p>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
-              tableData={[
-                ["Veg Pizza", "₹160"],
-                ["Paneer Pizza", "₹200"],
-                ["Peri Peri Pizza", "₹160"],
-                ["Cheese Corn Pizza", "₹180"],
-                ["Paneer Pizza", "₹160"],
+              tableHead={[
+                "First Name",
+                "Last Name",
+                "Email",
+                "Duty",
+                "Phone Number",
               ]}
-            />
-          </CardBody>
-        </Card>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Sandwich</h4>
-            <p className={classes.cardCategoryWhite}>Sandwichs yaay</p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
               tableData={[
-                ["Plain Sandwich", "₹70"],
-                ["Cheese Chilli Sandwich", "₹180"],
-                ["Club Sandwich", "₹90"],
-                ["Pizza Grilled Sandwich", "₹180"],
-                ["Peri Peri Grilled Sandwich", "₹130"],
+                [
+                  "Pradeep",
+                  "Sharma",
+                  "abhish@gmail.com",
+                  "Busboy",
+                  "9064826492",
+                ],
+                [
+                  "Nakshita",
+                  "Jain",
+                  "Nakshu@gmail.com",
+                  "Waiter",
+                  "8728365925",
+                ],
+                [
+                  "Aditya",
+                  "Thakkar",
+                  "thakkar_adi@gmail.com",
+                  "Chef",
+                  "91347698173",
+                ],
               ]}
             />
           </CardBody>
