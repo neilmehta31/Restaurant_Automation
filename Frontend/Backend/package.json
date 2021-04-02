@@ -1,0 +1,38 @@
+{
+  "name": "Restraurant_Automation_SE",
+  "version": "1.0.0",
+  "description": "Project for the course Software Engineering II Sem 2020-21",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilmehta31/Restraurant_Automation_SE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neilmehta31/Restraurant_Automation_SE/issues"
+  },
+  "homepage": "https://github.com/neilmehta31/Restraurant_Automation_SE#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "instascan": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.0",
+    "passport": "^0.4.1",
+    "passport-google-auth": "^1.0.2",
+    "passport-google-oauth": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
