@@ -10,10 +10,6 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
 
-import { getParsedCommandLineOfConfigFile } from "typescript";
-
-
-
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -21,13 +17,11 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-
-
-      marginBottom: "0",
+      marginBottom: "0"
     },
     "& a,& a:hover,& a:focus": {
-      color: "#FFFFFF",
-    },
+      color: "#FFFFFF"
+    }
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -41,17 +35,14 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-
-
-      lineHeight: "1",
-    },
-  },
+      lineHeight: "1"
+    }
+  }
 };
 
 const useStyles = makeStyles(styles);
 const editSyles = makeStyles({
   root: {
-
     background: 'blue',
   },
 });
@@ -62,7 +53,6 @@ export default function PlaceOrder(){
     return(
         <GridContainer>
             <GridItem xs={12} sm={12} md={12}>
-
         <Card>
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Simple Table</h4>
@@ -73,43 +63,22 @@ export default function PlaceOrder(){
           <CardBody>
             <Table
               tableHeaderColor="primary"
-
-              tableHead={[
-                "First Name",
-                "Last Name",
-                "Email",
-                "City",
-                "Phone Number",
-              ]}
+              tableHead={["FoodID","Item", "Price"]}
               tableData={[
-                [
-                  "Abhishek",
-                  "Sharma",
-                  "abhish@gmail.com",
-                  "Indore",
-                  "9064826492",
-                ],
-                [
-                  "Nakshita",
-                  "Jain",
-                  "Nakshu@gmail.com",
-                  "Hyderabad",
-                  "8728365925",
-                ],
-                [
-                  "Aditya",
-                  "Thakkar",
-                  "thakkar_adi@gmail.com",
-                  "Amristar",
-                  "91347698173",
-                ],
+                [1,"Jeera-Rice", "Rs 100"],
+                [2,"Manchurian", "Rs 70"],
+                [3,"Noodles", "Rs 80"],
+                [4,"Fish", "Rs 120"],
+                [5,"Idli-Sambhar", "Rs 60"],
+                [6,"Pav-Bhaji", "Rs 80"]
               ]}
+              
             />
           </CardBody>
         </Card>
       </GridItem>
-
-    </GridContainer>
-  );
+        </GridContainer>
+    )
 }
+
 
