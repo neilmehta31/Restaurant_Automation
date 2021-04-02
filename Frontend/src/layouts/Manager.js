@@ -40,7 +40,7 @@ const switchRoutes = (
 
 const useStyles = makeStyles(styles);
 
-export default function Admin({ ...rest }) {
+export default function Manager({ ...rest }) {
   // styles
   const classes = useStyles();
   // ref to help us initialize PerfectScrollbar on windows devices
@@ -96,7 +96,7 @@ export default function Admin({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Customer Name"}
+        logoText={"Manager"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
