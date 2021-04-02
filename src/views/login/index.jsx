@@ -20,8 +20,9 @@ export class Login extends Component {
 
   redirectToCustomer = () => {
     console.log("meow");
-    <Admin />;
+    // <Admin />;
   };
+
   redirectToManager = () => {
     console.log("bitch");
   };
