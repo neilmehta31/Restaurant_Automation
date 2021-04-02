@@ -10,10 +10,6 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
 
-import { getParsedCommandLineOfConfigFile } from "typescript";
-
-
-
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -21,8 +17,6 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-
-
       marginBottom: "0",
     },
     "& a,& a:hover,& a:focus": {
@@ -41,8 +35,6 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-
-
       lineHeight: "1",
     },
   },
@@ -51,56 +43,53 @@ const styles = {
 const useStyles = makeStyles(styles);
 const editSyles = makeStyles({
   root: {
-
-    background: 'blue',
+    background: "blue",
   },
 });
 
-export default function PlaceOrder(){
-    const classes = useStyles();
-    const editSt=editSyles();
-    return(
-        <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
-
+export default function PlaceOrder() {
+  const classes = useStyles();
+  const editSt = editSyles();
+  return (
+    <GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
+            <h4 className={classes.cardTitleWhite}>Employee Info</h4>
             <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
+              The details of the staff working at the restraunt
             </p>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-
               tableHead={[
                 "First Name",
                 "Last Name",
                 "Email",
-                "City",
+                "Duty",
                 "Phone Number",
               ]}
               tableData={[
                 [
-                  "Abhishek",
+                  "Pradeep",
                   "Sharma",
                   "abhish@gmail.com",
-                  "Indore",
+                  "Busboy",
                   "9064826492",
                 ],
                 [
                   "Nakshita",
                   "Jain",
                   "Nakshu@gmail.com",
-                  "Hyderabad",
+                  "Waiter",
                   "8728365925",
                 ],
                 [
                   "Aditya",
                   "Thakkar",
                   "thakkar_adi@gmail.com",
-                  "Amristar",
+                  "Chef",
                   "91347698173",
                 ],
               ]}
@@ -108,8 +97,6 @@ export default function PlaceOrder(){
           </CardBody>
         </Card>
       </GridItem>
-
     </GridContainer>
   );
 }
-

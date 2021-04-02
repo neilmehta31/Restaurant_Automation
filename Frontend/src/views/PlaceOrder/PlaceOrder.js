@@ -17,11 +17,11 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-      marginBottom: "0"
+      marginBottom: "0",
     },
     "& a,& a:hover,& a:focus": {
-      color: "#FFFFFF"
-    }
+      color: "#FFFFFF",
+    },
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -35,50 +35,63 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-      lineHeight: "1"
-    }
-  }
+      lineHeight: "1",
+    },
+  },
 };
 
 const useStyles = makeStyles(styles);
 const editSyles = makeStyles({
   root: {
-    background: 'blue',
+    background: "blue",
   },
 });
 
-export default function PlaceOrder(){
-    const classes = useStyles();
-    const editSt=editSyles();
-    return(
-        <GridContainer>
-            <GridItem xs={12} sm={12} md={12}>
+export default function PlaceOrder() {
+  const classes = useStyles();
+  const editSt = editSyles();
+  return (
+    <GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
+            <h4 className={classes.cardTitleWhite}>Pizza</h4>
+            <p className={classes.cardCategoryWhite}>aa this a pizza</p>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["Item", "Price"]}
+              tableHead={["Item", "Cost"]}
               tableData={[
-                ["Jeera-Rice", "Rs 100"],
-                ["Manchurian", "Rs 70"],
-                ["Noodles", "Rs 80"],
-                ["Fish", "Rs 120"],
-                ["Idli-Sambhar", "Rs 60"],
-                ["Pav-Bhaji", "Rs 80"]
+                ["Veg Pizza", "₹160"],
+                ["Paneer Pizza", "₹200"],
+                ["Peri Peri Pizza", "₹160"],
+                ["Cheese Corn Pizza", "₹180"],
+                ["Paneer Pizza", "₹160"],
               ]}
-              
+            />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>Sandwich</h4>
+            <p className={classes.cardCategoryWhite}>Sandwichs yaay</p>
+          </CardHeader>
+          <CardBody>
+            <Table
+              tableHeaderColor="primary"
+              tableHead={["Item", "Cost"]}
+              tableData={[
+                ["Plain Sandwich", "₹70"],
+                ["Cheese Chilli Sandwich", "₹180"],
+                ["Club Sandwich", "₹90"],
+                ["Pizza Grilled Sandwich", "₹180"],
+                ["Peri Peri Grilled Sandwich", "₹130"],
+              ]}
             />
           </CardBody>
         </Card>
       </GridItem>
-        </GridContainer>
-    )
+    </GridContainer>
+  );
 }
-
-
