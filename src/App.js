@@ -12,16 +12,16 @@ const hist = createBrowserHistory();
 
 class App extends Component {
   state = {
-    comp: Admin,
-    path: "/admin",
+    comp: Login,
+    path: "/login",
   };
   render() {
     return (
       <div>
         <Router history={hist}>
           <Switch>
-            <Route path="/admin" component={Admin} />
-            <Redirect from="/" to="/admin" />
+            <Route path="/login" component={Login} />
+            <Redirect from="/" to="/login" />
           </Switch>
         </Router>
       </div>
