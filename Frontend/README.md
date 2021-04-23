@@ -1,2 +1,2 @@
-#SE_Retaurnt_Automation Project 2021 Frontend 
+# Restaurant_Automation Frontend
 Project FRONTEND for the course Software Engineering II Sem 2020-21
