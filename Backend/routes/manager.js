@@ -230,7 +230,7 @@ router.route('/tables/add').post((req, res) => {
     const available = req.body.available;
     const reserved = req.body.reserved;
 
-    const newTable = new Table({ tableId, available, reserved });
+    const newTable = new Tables({ tableId, available, reserved });
 
     newTable.save()
         .then(() => res.json({ MESSAGE: 'Table added to the database', Result: newTable }))
