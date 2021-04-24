@@ -262,6 +262,11 @@ router.route('/updateinfo').post((req, res) => {
 
 
 
+
+
+
+
+
 // Customer choosing the desired table
 router.route('/getTableStatus').get((req, res) => {
     Tables.find()
