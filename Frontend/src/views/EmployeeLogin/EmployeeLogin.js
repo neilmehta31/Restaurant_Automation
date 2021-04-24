@@ -8,7 +8,7 @@ import Manager from "../../layouts/Manager.js";
 import {useState} from 'react';
 import Axios from 'axios';
 
-function Login (){
+function EmployeeLogin (){
   
 
   const [containername,setContainer]=useState({containername:'container'});
@@ -31,16 +31,21 @@ function Login (){
     setContainer({ containername: "container" });
   };
 
-  const redirectToCustomer = () => {
+
+
+
+
+  const redirectToEmployeeSignin = () => {
     
-        Axios.post("http://localhost:5000/api/customer/signin", {
+        Axios.post("http://localhost:5000/api/employee/signin", {
         email,
         password
       }).then((response) => {
         if(response.data.success)
         {
-          history.push("/admin/dashboard");
-          console.log(email);
+            
+          history.push("/"+response.data.employee.designation.toLowerCase());
+          console.log(response);
           
         }
         console.log(response.data.success);
@@ -84,15 +89,15 @@ function Login (){
     return (
       <div className="logincontainer">
         <div>
-          <h2 className="loginh2">Customer Login </h2>
+          <h2 className="loginh2">Employee Login </h2>
         </div>
 
         <div className={containername.containername} id="container">
-          <div className="form-container sign-up-container">
+          {/* <div className="form-container sign-up-container">
             <form className="loginform" action="#">
               <h1 className="colorCreateAccount loginh1">Create Account</h1>
 
-              {/* <div className="social-container">
+               <div className="social-container">
                 <a href="#" className="social logina">
                   <i className="fab fa-facebook-f"></i>
                 </a>
@@ -102,7 +107,7 @@ function Login (){
                 <a href="#" className="social logina">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-              </div> */}
+              </div> 
               <span className="loginspan">
                 or use your email for registration
               </span>
@@ -146,7 +151,7 @@ function Login (){
                 Sign Up
               </button>
             </form>
-          </div>
+          </div> */}
           <div className="form-container sign-in-container">
             <form className="loginform" action="#">
               <h1 className="colorCreateAccount loginh1">Sign in</h1>
@@ -177,7 +182,7 @@ function Login (){
               </a>
               <button
                 className="buttonclass rounded-pill"
-                onClick={redirectToCustomer}
+                onClick={redirectToEmployeeSignin}
               >
                 Sign In
               </button>
@@ -203,13 +208,13 @@ function Login (){
                 <p className="loginp">
                   Enter your personal details and start journey with us
                 </p>
-                <button
+                {/* <button
                   className=" buttonclass ghost rounded-pill "
                   id="signUp"
                   onClick={signUpButton}
                 >
                   Sign Up
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -219,5 +224,5 @@ function Login (){
   }
 
 
-export default Login;
+export default EmployeeLogin;
 

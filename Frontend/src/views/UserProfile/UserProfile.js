@@ -34,10 +34,17 @@ const styles = {
   }
 };
 
+
+
 const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
   const classes = useStyles();
+  const [phoneNo,setPhoneNo]=useState('0'); 
+  const [firstname,setFirstname]=useState('0'); 
+  const [lastname,setLastname]=useState('0'); 
+  const [password,setPassword]=useState('0'); 
+
   return (
     <div>
       <GridContainer>
@@ -56,6 +63,7 @@ export default function UserProfile() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    onChange={(e) => }
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>

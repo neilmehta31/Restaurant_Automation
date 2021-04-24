@@ -1,38 +1,68 @@
 import React, { Component } from "react";
+import {useState} from 'react';
+import Axios from 'axios';
 
-export class Table extends Component {
-  state = { tableid: 0, bookingstate: 0, _classname: "tableshape " };
+function Table() {
+  // state = { tableid: 0, bookingstate: 0, _classname: "tableshape " };
 
-  bookTable = () => {
+  const [tableid,setTableid]=useState(0);
+  const [bookingstate,setBookingstate]=useState(0);
+  const [available,setAvailable]=useState(0);
+  const [_classname,set_classname]=useState("tableshape");
+
+  const bookTable = () => {
     //color yellow
-    if (this.state.bookingstate === 0) {
-      this.setState({
-        bookingstate: 1,
-        _classname: "tableshape tablebookedcolor",
-      });
+    if (bookingstate === 0) {
+      // this.setState({
+      //   bookingstate: 1,
+      //   _classname: "tableshape tablebookedcolor",
+      // });
+      setBookingstate(1);
+      set_classname("tableshape tablebookedcolor");
     } else {
-      this.setState({ bookingstate: 0, _classname: "tableshape" });
+      // this.setState({ bookingstate: 0, _classname: "tableshape" });
+      setBookingstate(0);
+      set_classname("tableshape");
     }
   };
 
-  reserveTable = () => {
+  const reserveTable = () => {
     //color red
-    if (this.state.bookingstate === 0) {
-      this.setState({
-        bookingstate: 2,
-        _classname: "tableshape tablereservedcolor",
-      });
+    if (bookingstate === 0) {
+      // this.setState({
+      //   bookingstate: 2,
+      //   _classname: "tableshape tablereservedcolor",
+      // });
+      setBookingstate(2);
+      setAvailable(1);
+      set_classname("tableshape tablereservedcolor");
     } else {
-      this.setState({ bookingstate: 0, _classname: "tableshape" });
+      // this.setState({ bookingstate: 0, _classname: "tableshape" });
+      setBookingstate(0);
+      setAvailable(0);
+      set_classname("tableshape");
     }
+    Axios.post('http://localhost:5000/api/customer/tableSelection',{
+      tableid,
+      available
+      
+    }).then((response) => {
+      
+        console.log(response);
+      // console.log(response.data.success);
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
-  render() {
+  
     return (
       <div
-        onClick={() => this.reserveTable()}
-        className={this.state._classname}
+        onClick={() => reserveTable()}
+        className={_classname}
       ></div>
     );
-  }
+  
 }
+
+export default Table;

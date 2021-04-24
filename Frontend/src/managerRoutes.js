@@ -11,6 +11,7 @@ import Language from "@material-ui/icons/Language";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import PlaceOrder from "views/PlaceOrder/PlaceOrder.js";
+// import TableLayout from "views/BookTable/BookTable";
 // core components/views for RTL layout
 import { Place } from "@material-ui/icons";
 import { TableLayout } from "views/BookTable/BookTable";

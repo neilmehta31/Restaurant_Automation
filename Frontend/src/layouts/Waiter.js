@@ -96,7 +96,7 @@ export default function Waiter({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Manager"}
+        logoText={"Waiter"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}

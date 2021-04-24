@@ -10,7 +10,10 @@ import BusBoy from "layouts/BusBoy";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from "views/login/index";
+import ManagerLogin from "views/ManagerLogin/managerLogin.js";
 import QRRead from "components/QR/QR";
+import EmplLogin from "views/EmployeeLogin/EmployeeLogin";
+import EmployeeLogin from "views/EmployeeLogin/EmployeeLogin";
 
 const hist = createBrowserHistory();
 
@@ -29,6 +32,8 @@ class App extends Component {
             <Route path="/waiter" component={Waiter} />
             <Route path="/cashier" component={Cashier} />
             <Route path="/busboy" component={BusBoy} />
+            <Route path="/managerLogin" component={ManagerLogin} />
+            <Route path="/employeeLogin" component={EmployeeLogin} />
             <Redirect from="/" to="/login" />
           </Switch>
         </Router>

@@ -229,6 +229,37 @@ router.route('/forgotPassword').post((req, res) => {
 });
 
 
+router.route('/updateinfo').post((req, res) => {
+    let { email} = req.body;
+
+    Customer.findOne({ email: email })
+        .then(customer => {
+            customer.phoneNo = req.body.phoneNo!=null ? req.body.phoneNo : customer.phoneNo;
+            customer.firstname = req.body.firstname!=null ? req.body.firstname : customer.firstname;
+            customer.surname = req.body.surname!=null ? req.body.surname : customer.surname;
+            customer.password = req.body.password!=null ? req.body.password : customer.password;
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(customer.password, salt, function (err, hash) {
+                    if (err) throw err;
+                    customer.password = hash;
+                    customer.save()
+                        .then(response => {
+                            res.status(200).json({
+                                MESSAGE: 'Customer info is UPDATED in the database',
+                                success: true,
+                                result: response
+                            })
+                        })
+                        .catch(err => {
+                            res.status(500).json({
+                                errors: [{ error: err }]
+                            });
+                        });
+                });
+            });
+        }).catch(err => res.status(400).json('Error :' + err));
+});
+
 
 
 // Customer choosing the desired table
