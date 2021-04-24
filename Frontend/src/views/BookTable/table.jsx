@@ -18,12 +18,26 @@ function Table() {
       //   _classname: "tableshape tablebookedcolor",
       // });
       setBookingstate(1);
+      setAvailable(1);
       set_classname("tableshape tablebookedcolor");
     } else {
       // this.setState({ bookingstate: 0, _classname: "tableshape" });
       setBookingstate(0);
+      setAvailable(0);
       set_classname("tableshape");
     }
+
+    Axios.post('http://localhost:5000/api/customer/tableSelection',{
+      tableid,
+      available
+      
+    }).then((response) => {
+      
+        console.log(response);
+      // console.log(response.data.success);
+    }).catch((err) => {
+      console.log(err);
+    });
   };
 
   const reserveTable = () => {
@@ -58,7 +72,7 @@ function Table() {
   
     return (
       <div
-        onClick={() => reserveTable()}
+        onClick={() => bookTable()}
         className={_classname}
       ></div>
     );
