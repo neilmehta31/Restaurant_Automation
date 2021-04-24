@@ -263,6 +263,14 @@ router.route('/updateinfo').post((req, res) => {
 
 
 // Customer choosing the desired table
+router.route('/getTableStatus').get((req, res) => {
+    Tables.find()
+        .then(table => res.json(table))
+        .catch(error => res.status(400).json('Error: ' + error));
+});
+
+
+
 router.route('/tableSelection/:id').post((req, res) => {
     Tables.findById(req.params.id)
         .then(table => {
