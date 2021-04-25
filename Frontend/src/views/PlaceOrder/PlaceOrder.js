@@ -52,8 +52,9 @@ export default function PlaceOrder() {
   const classes = useStyles();
   const editSt = editSyles();
   return (
-    <GridContainer>
+    // <GridContainer >
+    <div>
       <Meals />
-    </GridContainer>
+    </div>  
   );
 }

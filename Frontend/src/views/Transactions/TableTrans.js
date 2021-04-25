@@ -5,12 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import {useEffect} from 'react';
 
 
-export default function Meals() {
+export default function TableTrans() {
     const { useState } = React ;
   
     const [columns, setColumns] = useState([
-      { title: 'Name' , field: 'mealName' },
-      { title: 'Price', field: 'price'},
+      { title: 'Customer First Name' , field: 'firstname' },
+      { title: 'Customer Last', field: 'surname'},
+      { title: 'Transaction', field: 'price'},
     //   { title: 'Name Of HR', field: 'Name_of_HR', type: 'numeric' },
     //   {
     //     title: 'Est_Yr',
@@ -20,40 +21,42 @@ export default function Meals() {
     ]);
   
     const [data, setData] = useState([
-      // { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      
+      { firstname: 'Neil', surname: 'Mehta', price: 'Rs180' },
+      { firstname: 'Atishay', surname: 'Jain', price: 'Rs200' },
+      { firstname: 'Sahaj', surname: 'Gupta', price: 'Rs280' },
+      { firstname: 'Barun', surname: 'Agarwal', price: 'Rs150' },
     ]);
 
-    useEffect(() => {
-        getData();
-    }, []);
+    // useEffect(() => {
+    //     getData();
+    // }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/meals/all").then((response) => {
+    // const getData = () => {Axios.get("http://localhost:5000/api/manager/meals/all").then((response) => {
 
-              console.log(response);
+    //           console.log(response);
   
-              setData(response.data); 
-            //   console.log(response.data[0].mealName);
-       })
+    //           setData(response.data); 
+    //         //   console.log(response.data[0].mealName);
+    //    })
       
-       };
+    //    };
   
     return (
       <div>
           
       <MaterialTable
-        title="Order"
+        title="Transactions Details"
         columns={columns}
         data={data}
         editable={{
-        //   onRowAdd: newData =>
-        //     new Promise((resolve, reject) => {
-        //       setTimeout(() => {
-        //         setData([...data, newData]);
+          onRowAdd: newData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
                 
-        //         resolve();
-        //       }, 1000)
-        //     }),
+                resolve();
+              }, 1000)
+            }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {

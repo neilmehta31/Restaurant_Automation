@@ -199,9 +199,9 @@ function ManagerLogin (){
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1 className="loginh1">Hello, Friend!</h1>
+                <h1 className="loginh1">Hello, Manager!</h1>
                 <p className="loginp">
-                  Enter your personal details and start journey with us
+                  Welcome back Manager
                 </p>
                 {/* <button
                   className=" buttonclass ghost rounded-pill "

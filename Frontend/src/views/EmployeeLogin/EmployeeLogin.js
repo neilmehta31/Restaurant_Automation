@@ -207,9 +207,9 @@ function EmployeeLogin (){
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1 className="loginh1">Hello, Friend!</h1>
+                <h1 className="loginh1">Hello,Employee!</h1>
                 <p className="loginp">
-                  Enter your personal details and start journey with us
+                 Welcome back
                 </p>
                 {/* <button
                   className=" buttonclass ghost rounded-pill "

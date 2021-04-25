@@ -9,7 +9,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
-import TableTrans from "./TableTrans.js";
+import Menu from './Menu.js';
 
 const styles = {
   cardCategoryWhite: {
@@ -48,12 +48,13 @@ const editSyles = makeStyles({
   },
 });
 
-export default function Transaction() {
+export default function Setmenu() {
   const classes = useStyles();
   const editSt = editSyles();
   return (
+    // <GridContainer >
     <div>
-      <TableTrans />
-    </div>
+      <Menu />
+    </div>  
   );
 }

@@ -5,16 +5,16 @@ import TextField from '@material-ui/core/TextField';
 import {useEffect} from 'react';
 
 
-export default function Employee() {
+export default function Customer() {
     const { useState } = React ;
   
     const [columns, setColumns] = useState([
-      {title:'Employee ID',field : 'empId'},
+      // {title:'Employee ID',field : 'empId'},
       { title: 'First Name' , field: 'firstname' },
       { title: 'Sur Name', field: 'surname'},
       { title: 'Email', field: 'email'},
-      { title: 'Designation', field: 'designation'},
-      { title: 'Salary', field: 'salary'},
+      // { title: 'Designation', field: 'designation'},
+      // { title: 'Salary', field: 'salary'},
       { title: 'Phone No', field: 'phoneNo'},
     //   { title: 'Name Of HR', field: 'Name_of_HR', type: 'numeric' },
     //   {
@@ -33,7 +33,7 @@ export default function Employee() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/employee/all").then((response) => {
+    const getData = () => {Axios.get("http://localhost:5000/api/manager/customer/all").then((response) => {
 
               console.log(response);
   
@@ -43,15 +43,15 @@ export default function Employee() {
       
        };
 
-       const addEmployee = (e) => {Axios.post("http://localhost:5000/api/manager/employee/add",e).then((response) => {
+//        const addCustomer = (e) => {Axios.post("http://localhost:5000/api/manager/customer/add",e).then((response) => {
 
-        console.log(response);
+//         console.log(response);
 
-        // setData(response.data); 
-      //   console.log(response.data[0].mealName);
- })
+//         // setData(response.data); 
+//       //   console.log(response.data[0].mealName);
+//      })
 
- };   
+//  };   
   
     return (
       <div>
@@ -61,28 +61,28 @@ export default function Employee() {
         columns={columns}
         data={data}
         editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setData([...data, newData]);
+        //   onRowAdd: newData =>
+        //     new Promise((resolve, reject) => {
+        //       setTimeout(() => {
+        //         setData([...data, newData]);
                 
-                addEmployee(newData);
-                console.log(newData);
-                resolve();
-              }, 1000)
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
+        //         addCustomer(newData);
+        //         console.log(newData);
+        //         resolve();
+        //       }, 1000)
+        //     }),
+        //   onRowUpdate: (newData, oldData) =>
+        //     new Promise((resolve, reject) => {
+        //       setTimeout(() => {
+        //         const dataUpdate = [...data];
+        //         const index = oldData.tableData.id;
+        //         dataUpdate[index] = newData;
+        //         setData([...dataUpdate]);
   
-                resolve();
-              }, 1000)
+        //         resolve();
+        //       }, 1000)
               
-            }),
+        //     }),
           // onRowDelete: oldData =>
           //   new Promise((resolve, reject) => {
           //     setTimeout(() => {

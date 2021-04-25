@@ -9,6 +9,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
+import Customer from './customer';
 
 const styles = {
   cardCategoryWhite: {
@@ -40,8 +41,6 @@ const styles = {
   },
 };
 
-
-
 const useStyles = makeStyles(styles);
 const editSyles = makeStyles({
   root: {
@@ -53,52 +52,8 @@ export default function PlaceOrder() {
   const classes = useStyles();
   const editSt = editSyles();
   return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={[
-                "First Name",
-                "Last Name",
-                "Email",
-                "City",
-                "Phone Number",
-              ]}
-              tableData={[
-                [
-                  "Abhishek",
-                  "Sharma",
-                  "abhish@gmail.com",
-                  "Indore",
-                  "9064826492",
-                ],
-                [
-                  "Nakshita",
-                  "Jain",
-                  "Nakshu@gmail.com",
-                  "Hyderabad",
-                  "8728365925",
-                ],
-                [
-                  "Aditya",
-                  "Thakkar",
-                  "thakkar_adi@gmail.com",
-                  "Amristar",
-                  "91347698173",
-                ],
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
+    <div>
+      <Customer />
+    </div>  
   );
 }

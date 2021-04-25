@@ -5,17 +5,12 @@ import TextField from '@material-ui/core/TextField';
 import {useEffect} from 'react';
 
 
-export default function Employee() {
+export default function Menu() {
     const { useState } = React ;
   
     const [columns, setColumns] = useState([
-      {title:'Employee ID',field : 'empId'},
-      { title: 'First Name' , field: 'firstname' },
-      { title: 'Sur Name', field: 'surname'},
-      { title: 'Email', field: 'email'},
-      { title: 'Designation', field: 'designation'},
-      { title: 'Salary', field: 'salary'},
-      { title: 'Phone No', field: 'phoneNo'},
+      { title: 'Name' , field: 'mealName' },
+      { title: 'Price', field: 'price'},
     //   { title: 'Name Of HR', field: 'Name_of_HR', type: 'numeric' },
     //   {
     //     title: 'Est_Yr',
@@ -33,7 +28,7 @@ export default function Employee() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/employee/all").then((response) => {
+    const getData = () => {Axios.get("http://localhost:5000/api/manager/meals/all").then((response) => {
 
               console.log(response);
   
@@ -42,22 +37,12 @@ export default function Employee() {
        })
       
        };
-
-       const addEmployee = (e) => {Axios.post("http://localhost:5000/api/manager/employee/add",e).then((response) => {
-
-        console.log(response);
-
-        // setData(response.data); 
-      //   console.log(response.data[0].mealName);
- })
-
- };   
   
     return (
       <div>
           
       <MaterialTable
-        title="Set Info"
+        title="Set Menu"
         columns={columns}
         data={data}
         editable={{
@@ -66,8 +51,6 @@ export default function Employee() {
               setTimeout(() => {
                 setData([...data, newData]);
                 
-                addEmployee(newData);
-                console.log(newData);
                 resolve();
               }, 1000)
             }),
@@ -81,21 +64,21 @@ export default function Employee() {
   
                 resolve();
               }, 1000)
-              
+              Axios.post('http')
             }),
-          // onRowDelete: oldData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       const dataDelete = [...data];
-          //       const index = oldData.tableData.id;
-          //       dataDelete.splice(index, 1);
-          //       setData([...dataDelete]);
+          onRowDelete: oldData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...data];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setData([...dataDelete]);
                 
-          //       resolve()
-          //     }, 1000)
-          //   }),
+                resolve()
+              }, 1000)
+            }),
         }}
       />
       </div>
-    )
+    );
   }
