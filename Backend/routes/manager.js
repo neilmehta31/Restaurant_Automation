@@ -211,6 +211,9 @@ router.route('/employee/:id').get((req, res) => {
 });
 
 
+
+
+
 // Manager can see customer Info
 router.route('/customer/all').get((req, res) => {
     Customer.find()

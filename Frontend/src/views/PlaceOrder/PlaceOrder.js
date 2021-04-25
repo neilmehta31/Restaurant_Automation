@@ -63,11 +63,11 @@ export default function PlaceOrder() {
               tableHeaderColor="primary"
               tableHead={["Item", "Cost"]}
               tableData={[
-                ["Veg Pizza", "₹160"],
-                ["Paneer Pizza", "₹200"],
-                ["Peri Peri Pizza", "₹160"],
-                ["Cheese Corn Pizza", "₹180"],
-                ["Paneer Pizza", "₹160"],
+                // ["Veg Pizza", "₹160"],
+                // ["Paneer Pizza", "₹200"],
+                // ["Peri Peri Pizza", "₹160"],
+                // ["Cheese Corn Pizza", "₹180"],
+                // ["Paneer Pizza", "₹160"],
               ]}
             />
           </CardBody>

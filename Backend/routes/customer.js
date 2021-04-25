@@ -8,6 +8,7 @@ const {
 
 let Customer = require('../models/customer.model');
 let Tables = require('../models/tables.model');
+let Orders = require('../models/orders.model');
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -262,7 +263,20 @@ router.route('/updateinfo').post((req, res) => {
 
 
 
+
+
+
+
+
 // Customer choosing the desired table
+router.route('/getTableStatus').get((req, res) => {
+    Tables.find()
+        .then(table => res.json(table))
+        .catch(error => res.status(400).json('Error: ' + error));
+});
+
+
+
 router.route('/tableSelection/:id').post((req, res) => {
     Tables.findById(req.params.id)
         .then(table => {
@@ -280,5 +294,27 @@ router.route('/tableSelection/:id').post((req, res) => {
         }).catch(err => res.status(400).json({ errro: err }));
 });
 
+
+
+
+
+
+
+// Customers order the meals
+router.route('/orderMeal').post((req,res)=>{
+    let {mealId,tableId,email} = req.body;
+    var orderId;
+    Orders.find()
+    .then(orders=>{
+        orderId = orders.length+1;
+
+        const newOrder = new Orders({ mealId,tableId,orderId,email });
+    newOrder.save()
+    .then(() => res.json({ MESSAGE: 'Order added to the database', Result: newOrder }))
+    .catch(error => res.status(400).json('Error :' + error));
+
+    })
+    .catch(error => res.status(400).json('Error: ' + error));    
+})
 
 module.exports = router;
