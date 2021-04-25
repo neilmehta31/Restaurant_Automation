@@ -9,6 +9,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
+import Meals from './Meals';
 
 const styles = {
   cardCategoryWhite: {
@@ -51,47 +52,9 @@ export default function PlaceOrder() {
   const classes = useStyles();
   const editSt = editSyles();
   return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Pizza</h4>
-            <p className={classes.cardCategoryWhite}>aa this a pizza</p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
-              tableData={[
-                ["Veg Pizza", "₹160"],
-                ["Paneer Pizza", "₹200"],
-                ["Peri Peri Pizza", "₹160"],
-                ["Cheese Corn Pizza", "₹180"],
-                ["Paneer Pizza", "₹160"],
-              ]}
-            />
-          </CardBody>
-        </Card>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Sandwich</h4>
-            <p className={classes.cardCategoryWhite}>Sandwichs yaay</p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
-              tableData={[
-                ["Plain Sandwich", "₹70"],
-                ["Cheese Chilli Sandwich", "₹180"],
-                ["Club Sandwich", "₹90"],
-                ["Pizza Grilled Sandwich", "₹180"],
-                ["Peri Peri Grilled Sandwich", "₹130"],
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
+    // <GridContainer >
+    <div>
+      <Meals />
+    </div>  
   );
 }

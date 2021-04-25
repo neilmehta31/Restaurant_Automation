@@ -13,15 +13,25 @@ import Menu from "@material-ui/icons/Menu";
 import AdminNavbarLinks from "./AdminNavbarLinks.js";
 import RTLNavbarLinks from "./RTLNavbarLinks.js";
 import Button from "components/CustomButtons/Button.js";
-
-import QRRead from "../QR/QR.js";
+ 
+//import QRRead from "../QR/QR.js";
 import styles from "assets/jss/material-dashboard-react/components/headerStyle.js";
 import "./styles.css";
-import { withRouter } from "react-router-dom";
-
+//import { withRouter } from "react-router-dom";
+import { useHistory} from 'react-router-dom';
 const useStyles = makeStyles(styles);
-
+ 
+ 
+ 
 export default function Header(props) {
+ 
+  const history=useHistory();
+ 
+  const scanQrfunc = () => {
+    console.log("meow");
+    history.push("/qr");
+  };
+ 
   const classes = useStyles();
   function makeBrand() {
     var name;
@@ -33,7 +43,7 @@ export default function Header(props) {
     });
     return name;
   }
-
+ 
   function scanQr() {
     var name;
     props.routes.map((prop) => {
@@ -44,12 +54,12 @@ export default function Header(props) {
     });
     return name;
   }
-
+ 
   const { color } = props;
   const appBarClasses = classNames({
     [" " + classes[color]]: color,
   });
-
+ 
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
@@ -71,14 +81,14 @@ export default function Header(props) {
             <Menu />
           </IconButton>
         </Hidden>
-        <button className="colorButton" onClick={QRRead.scanQr}>
+        <button type="button" className="btn rounded-pill changecolour" onClick={scanQrfunc}>
           QR
         </button>
       </Toolbar>
     </AppBar>
   );
 }
-
+ 
 Header.propTypes = {
   color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
   rtlActive: PropTypes.bool,

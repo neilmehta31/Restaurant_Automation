@@ -10,7 +10,8 @@ import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
-import PlaceOrder from "views/PlaceOrder/PlaceOrder.js";
+import Setmenu from "views/PlaceOrder/Setmenu.js";
+// import TableLayout from "views/BookTable/BookTable";
 // core components/views for RTL layout
 import { Place } from "@material-ui/icons";
 import { TableLayout } from "views/BookTable/BookTable";
@@ -23,7 +24,7 @@ const dashboardRoutes = [
     path: "/setMenu",
     name: "Set Menu",
     icon: Dashboard,
-    component: PlaceOrder,
+    component: Setmenu,
     layout: "/manager",
   },
   {

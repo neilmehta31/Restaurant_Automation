@@ -231,6 +231,7 @@ router.route('/forgotPassword').post((req, res) => {
 
 
 router.route('/updateinfo').post((req, res) => {
+
     let { email} = req.body;
 
     Customer.findOne({ email: email })
@@ -295,6 +296,13 @@ router.route('/tableSelection/:id').post((req, res) => {
 });
 
 
+
+//Meals database access to the manager
+router.route('/meals/all').get((req, res) => {
+    meals.find()
+        .then(manager => res.json(manager))
+        .catch(err => res.status(400).json('Error :' + err))
+});
 
 
 
