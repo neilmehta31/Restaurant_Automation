@@ -43,7 +43,7 @@
   "bugs": {
     "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
   },
-  "homepage": "https://creativetimofficial.github.io/material-dashboard-react/#/dashboard",
+  "homepage": "https://restaurant-automation-isf341.herokuapp.com/login",
   "optionalDependencies": {
     "@types/googlemaps": "3.39.6",
     "@types/markerclustererplus": "2.1.33",
