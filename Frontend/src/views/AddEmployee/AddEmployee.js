@@ -53,6 +53,9 @@ export default function UserProfile() {
   const [surname,setSurname]=useState('0'); 
   const [password, setPassword]= useState('0'); 
   const [phoneNo, setPhoneNo]= useState('0');
+  const [salary, setSalary]= useState('0');
+  const [phoneNo, setPhoneNo]= useState('0');
+  const [phoneNo, setPhoneNo]= useState('0');
   
 
   
@@ -155,6 +158,18 @@ export default function UserProfile() {
                     }}
                     onChange={(e) => {
                       setPassword(e.target.value);
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
+                  <CustomInput
+                    labelText="Phone no"
+                    id="phoneNo"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    onChange={(e) => {
+                      setPhoneNo(e.target.value);
                     }}
                   />
                 </GridItem>

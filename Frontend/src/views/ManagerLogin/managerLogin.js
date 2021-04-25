@@ -1,16 +1,17 @@
 import "./styles.css";
+import Admin from "../../layouts/Admin.js";
+import RTL from "../../layouts/Manager.js";
 import {Redirect, useHistory} from 'react-router-dom';
 
 import React, { Component } from "react";
+import Manager from "../../layouts/Manager.js";
 import {useState} from 'react';
 import Axios from 'axios';
 
-let useremail;
-
-function Login (){
+function ManagerLogin (){
   
 
-  const[containername,setContainer]=useState({containername:'container'});
+  const [containername,setContainer]=useState({containername:'container'});
   const[email,setEmail]=useState('');
   const[password,setPassword]=useState('');
   const[password_confirmation,setPasswordConfirmation]=useState('');
@@ -30,20 +31,17 @@ function Login (){
     setContainer({ containername: "container" });
   };
 
-
-
-  const redirectToCustomer = () => {
+  const redirectToManagerSignin = () => {
     
-        Axios.post("http://localhost:5000/api/customer/signin", {
+        Axios.post("http://localhost:5000/api/manager/signin", {
         email,
         password
       }).then((response) => {
         if(response.data.success)
         {
-          useremail=response.data.message.email;
-          //console.log(response.data.message.email);
-          history.push("/admin/dashboard");
-          console.log(useremail);
+          history.push("/manager");
+          console.log(email);
+          
         }
         console.log(response.data.success);
       }).catch((err) => {
@@ -86,15 +84,15 @@ function Login (){
     return (
       <div className="logincontainer">
         <div>
-          <h2 className="loginh2">Customer Login </h2>
+          <h2 className="loginh2">Manager Login </h2>
         </div>
 
         <div className={containername.containername} id="container">
-          <div className="form-container sign-up-container">
+          {/* <div className="form-container sign-up-container">
             <form className="loginform" action="#">
               <h1 className="colorCreateAccount loginh1">Create Account</h1>
 
-              {/* <div className="social-container">
+               <div className="social-container">
                 <a href="#" className="social logina">
                   <i className="fab fa-facebook-f"></i>
                 </a>
@@ -104,7 +102,7 @@ function Login (){
                 <a href="#" className="social logina">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-              </div> */}
+              </div> 
               <span className="loginspan">
                 or use your email for registration
               </span>
@@ -148,7 +146,7 @@ function Login (){
                 Sign Up
               </button>
             </form>
-          </div>
+          </div> */}
           <div className="form-container sign-in-container">
             <form className="loginform" action="#">
               <h1 className="colorCreateAccount loginh1">Sign in</h1>
@@ -179,7 +177,7 @@ function Login (){
               </a>
               <button
                 className="buttonclass rounded-pill"
-                onClick={redirectToCustomer}
+                onClick={redirectToManagerSignin}
               >
                 Sign In
               </button>
@@ -201,17 +199,17 @@ function Login (){
                 </button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1 className="loginh1">Hello, Friend!</h1>
+                <h1 className="loginh1">Hello, Manager!</h1>
                 <p className="loginp">
-                  Enter your personal details and start journey with us
+                  Welcome back Manager
                 </p>
-                <button
+                {/* <button
                   className=" buttonclass ghost rounded-pill "
                   id="signUp"
                   onClick={signUpButton}
                 >
                   Sign Up
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
@@ -221,5 +219,5 @@ function Login (){
   }
 
 
-export default Login;
+export default ManagerLogin;
 

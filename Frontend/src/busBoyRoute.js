@@ -11,6 +11,7 @@ import Language from "@material-ui/icons/Language";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import PlaceOrder from "views/PlaceOrder/PlaceOrder.js";
+import BusboyNotification from "views/BusBoyNotification/BusboytNotification";
 // core components/views for RTL layout
 import { Place } from "@material-ui/icons";
 import { TableLayout } from "views/BookTable/BookTable";
@@ -23,7 +24,7 @@ const dashboardRoutes = [
     path: "/notification",
     name: "Notifications",
     icon: Dashboard,
-    component: PlaceOrder,
+    component: BusboyNotification,
     layout: "/busboy",
   }
   

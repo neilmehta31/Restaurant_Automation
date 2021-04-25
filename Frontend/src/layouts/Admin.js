@@ -18,6 +18,8 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/food.jpg";
 import logo from "assets/img/reactlogo.png";
 
+import useremail from "../views/login/index";
+
 let ps;
 
 const switchRoutes = (
@@ -96,7 +98,7 @@ export default function Admin({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Customer Name"}
+        logoText={useremail}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}

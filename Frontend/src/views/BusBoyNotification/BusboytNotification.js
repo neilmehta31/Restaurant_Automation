@@ -10,7 +10,6 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
 import { number } from "prop-types";
-import useremail from '../EmployeeLogin/EmployeeLogin';
 
 const styles = {
   cardCategoryWhite: {
@@ -48,25 +47,8 @@ const editSyles = makeStyles({
     background: "blue",
   },
 });
-
-
-
-let tablelist = {
-    "table1":
-      {   
-          tableHeaderColor:"primary",
-          tableHead:["Item", "Cost"],
-          tableData:[
-              ["Veg Pizza", "₹160"],
-              ["Paneer Pizza", "₹200"],
-              ["Peri Peri Pizza", "₹160"],
-              ["Cheese Corn Pizza", "₹180"],
-              ["Paneer Pizza", "₹160"],
-            ],
-      }
-  ,
-  "table2":
-    {   
+let input =[
+    {
         tableHeaderColor:"primary",
         tableHead:["Item", "Cost"],
         tableData:[
@@ -77,8 +59,11 @@ let tablelist = {
             ["Paneer Pizza", "₹160"],
           ],
     }
+]
 
-}
+let tablelist =[
+    "table1","table2"
+]
 
 // function displaylist(){
 //     const classes = useStyles();
@@ -91,35 +76,59 @@ let tablelist = {
 //     );
 // }
 
-
-
-export default function PlaceOrder() {
+export default function BusboyNotification() {
   const classes = useStyles();
   const editSt = editSyles();
 
   const displaylist = (tablelist) => {
-    
+    return(
+        <Card>
+            <CardHeader color="primary">
+                <h4>{"name"}</h4>
+            </CardHeader>
+            <CardBody>
+            <Table
+              tableHeaderColor="primary"
+              tableHead={["Item", "Cost"]}
+              tableData={[
+                ["Veg Pizza", "₹160"],
+                ["Paneer Pizza", "₹200"],
+                ["Peri Peri Pizza", "₹160"],
+                ["Cheese Corn Pizza", "₹180"],
+                ["Paneer Pizza", "₹160"],
+              ]}
+            /> 
+            </CardBody>
+        </Card>
+    );
   }
 
   
 
   return (
-    Object.keys(tablelist).map(table => {
-      return(<div>
-        <Card>
-            <CardHeader color="primary">
-                <h4>{table}</h4>
-            </CardHeader>
-            <CardBody>
+    <GridContainer>
+      <GridItem xs={12} sm={12} md={12}>
+        {/* <Card>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>Pizza</h4>
+          </CardHeader>
+          <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={tablelist[table].tableHead}
-              tableData={tablelist[table].tableData}
-            />{console.log(useremail)}
-            </CardBody>
-        </Card>
-        </div>
-      )
-    })
+              tableHead={["Item", "Cost"]}
+              tableData={[
+                ["Veg Pizza", "₹160"],
+                ["Paneer Pizza", "₹200"],
+                ["Peri Peri Pizza", "₹160"],
+                ["Cheese Corn Pizza", "₹180"],
+                ["Paneer Pizza", "₹160"],
+              ]}
+            /> 
+
+          </CardBody>
+        </Card> */}
+        {displaylist(tablelist)}
+      </GridItem>
+    </GridContainer>
   );
 }

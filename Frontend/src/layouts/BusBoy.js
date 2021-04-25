@@ -96,7 +96,7 @@ export default function BusBoy({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Manager"}
+        logoText={"BusBoy"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}

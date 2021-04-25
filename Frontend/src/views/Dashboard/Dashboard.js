@@ -29,6 +29,8 @@ import CardIcon from "components/Card/CardIcon.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
+import useremail from "../login/index";
+
 import { bugs, website, server } from "variables/general.js";
 
 import {
@@ -100,6 +102,7 @@ export default function PlaceOrder() {
           </CardBody>
         </Card>
       </GridItem>
+      {console.log(useremail)}
     </GridContainer>
   );
 }
