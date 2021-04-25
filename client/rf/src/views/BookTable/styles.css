@@ -1,0 +1,45 @@
+.tableshape {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  background: rgb(49, 175, 77);
+  opacity: 0.5;
+  margin: 20px;
+}
+
+.tablebookedcolor {
+  background: rgba(1, 1, 1, 0.2);
+}
+
+.tablereservedcolor {
+  background: rgb(230, 40, 40);
+}
+.tableavailablecolor {
+  background: rgb(49, 175, 77);
+}
+
+.outersize {
+  padding: 0% 7%;
+  margin-top: 1%;
+}
+.marginleftright {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.head {
+  background: cyan;
+  height: 6rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+  text-justify: auto;
+  padding-top: 2rem;
+}
+.centertext {
+  text-align: center;
+}
+
+.textsize {
+  size: 50px;
+}
