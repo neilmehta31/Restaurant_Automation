@@ -9,6 +9,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
+import Employee from './employee.js';
 
 const styles = {
   cardCategoryWhite: {
@@ -51,52 +52,8 @@ export default function PlaceOrder() {
   const classes = useStyles();
   const editSt = editSyles();
   return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Employee Info</h4>
-            <p className={classes.cardCategoryWhite}>
-              The details of the staff working at the restraunt
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={[
-                "First Name",
-                "Last Name",
-                "Email",
-                "Duty",
-                "Phone Number",
-              ]}
-              tableData={[
-                [
-                  "Pradeep",
-                  "Sharma",
-                  "abhish@gmail.com",
-                  "Busboy",
-                  "9064826492",
-                ],
-                [
-                  "Nakshita",
-                  "Jain",
-                  "Nakshu@gmail.com",
-                  "Waiter",
-                  "8728365925",
-                ],
-                [
-                  "Aditya",
-                  "Thakkar",
-                  "thakkar_adi@gmail.com",
-                  "Chef",
-                  "91347698173",
-                ],
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
+    <div>
+      <Employee />
+    </div>  
   );
 }

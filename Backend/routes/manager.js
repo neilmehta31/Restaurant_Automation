@@ -18,7 +18,7 @@ let Transaction = require('../models/transaction.model');
 
 //Meals database access to the manager
 router.route('/meals/all').get((req, res) => {
-    meals.find()
+    meals.find({},{"_id":false,"mealName":true,"price":true})
         .then(manager => res.json(manager))
         .catch(err => res.status(400).json('Error :' + err))
 });
@@ -93,7 +93,7 @@ router.route('/employee/delete/:id').delete((req, res) => {
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 router.route('/employee/add').post((req, res) => {
-    let { empId, firstname, surname, email, password, phoneNo, salary, designation } = req.body;
+    let { empId, firstname, surname, email, phoneNo, salary, designation } = req.body;
     let errors = [];
     if (!empId) {
         errors.push({ empId: "required" });
@@ -135,7 +135,7 @@ router.route('/employee/add').post((req, res) => {
                     firstname: firstname,
                     surname: surname,
                     email: email,
-                    password: password,
+                    // password: password,
                     phoneNo: phoneNo,
                     salary: salary,
                     designation: designation,
