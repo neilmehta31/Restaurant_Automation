@@ -163,4 +163,17 @@ router.route('/forgotPassword').post((req, res) => {
 
 
 
+
+
+
+router.route('getProfieInfo').get((req,res)=>{
+    const {email} = req.body;
+    Employee.findOne({email:email})
+    .then(response=>res.status(200).json({success:true,result: response}))
+    .catch(err => {
+        res.status(500).json({success:false,error:err})
+    })
+})
+
+
 module.exports = router;
