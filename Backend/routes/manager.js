@@ -18,7 +18,7 @@ let Transaction = require('../models/transaction.model');
 
 //Meals database access to the manager
 router.route('/meals/all').get((req, res) => {
-    meals.find()
+    meals.find({},{"_id":false,"mealName":true,"price":true})
         .then(manager => res.json(manager))
         .catch(err => res.status(400).json('Error :' + err))
 });
