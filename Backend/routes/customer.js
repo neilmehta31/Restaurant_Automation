@@ -323,6 +323,12 @@ router.route('/orderMeal').post((req,res)=>{
 
     })
     .catch(error => res.status(400).json('Error: ' + error));    
-})
+});
+
+
+
+// ** Transaction util for the customer is inside the /paytm-nodejs/index.js file.
+// ** API for calling the mongodb trasnaction as well is availabe in that very file. 
+
 
 module.exports = router;

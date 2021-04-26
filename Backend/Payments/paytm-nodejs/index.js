@@ -13,6 +13,7 @@ const Transaction = require('../../models/transaction.model');
 const PaytmChecksum = require('../checksum')
 const PaytmConfig = require('../config')
 const { response } = require('express')
+const { json } = require('body-parser')
 
 const server = http.createServer()
 
@@ -107,7 +108,7 @@ server.on('request', (req, res) => {
 
             post_res.on('end', function () {
               response = JSON.parse(response)
-              console.log('txnToken:', response);
+              // console.log('txnToken:', response);
 
               res.writeHead(200, { 'Content-Type': 'text/html' })
               res.write(`<html>
@@ -150,8 +151,6 @@ server.on('request', (req, res) => {
         callbackResponse += chunk
       }).on('end', () => {
         let data = qs.parse(callbackResponse)
-        console.log(data)
-
         data = JSON.parse(JSON.stringify(data))
 
         const paytmChecksum = data.CHECKSUMHASH
@@ -159,11 +158,29 @@ server.on('request', (req, res) => {
         var isVerifySignature = PaytmChecksum.verifySignature(data, PaytmConfig.PaytmConfig.key, paytmChecksum)
         if (isVerifySignature) {
           console.log("Checksum Matched");
-
+          // console.log(data);
+                transaction = new Transaction({
+                  ORDERID:data.ORDERID,
+                  MID:data.MID,
+                  TXNID:data.TXNID,
+                  TXNAMOUNT:data.TXNAMOUNT,
+                  PAYMENTMODE:data.PAYMENTMODE,
+                  CURRENCY:data.CURRENCY,
+                  TXNDATE:data.TXNDATE,
+                  STATUS:data.STATUS,
+                  RESPCODE:data.RESPCODE,
+                  RESPMSG:data.RESPMSG,
+                  GATEWAYNAME:data.GATEWAYNAME,
+                  BANKTXNID:data.BANKTXNID,
+                  BANKNAME:data.BANKNAME
+                });
+                transaction.save()
+                  .then(response_trnsc => console.log('Result: success\nResponse : ' + response_trnsc))
+                  .catch(err => console.log('Errors : ' + err));
           var paytmParams = {};
 
           paytmParams.body = {
-            "mid": PaytmConfig.PaytmConfig.mid,
+            "mid": PaytmConfig.PaytmConfig.mid, 
             "orderId": data.ORDERID,
           };
 
@@ -199,19 +216,18 @@ server.on('request', (req, res) => {
               });
 
               post_res.on('end', function () {
-                // console.log('Response: ', response);
-                let data_transaction_database = response;
-                transaction = new Transaction({ transaction: JSON.stringify(data_transaction_database) });
-                transaction.save()
-                  .then(response_trnsc => console.log('Result: success\nResponse : ' + response_trnsc))
-                  .catch(err => console.log('Errors : ' + err));
-                res.write(response)
+                respopnse = JSON.parse(response);
+
+        res.write(response)
                 res.end()
               });
             });
 
             // post the data
             post_req.write(post_data);
+
+
+
             post_req.end();
           });
         } else {
