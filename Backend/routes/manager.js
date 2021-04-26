@@ -13,8 +13,8 @@ let Manager = require('../models/manager.model');
 let Tables = require('../models/tables.model');
 let Customer = require('../models/customer.model');
 let Transaction = require('../models/transaction.model');
-const Feedback = require('../models/feedback.model');
-
+let Feedback = require('../models/feedback.model');
+let Employee_hrs = require('../models/employee.hours.model');
 
 
 //Meals database access to the manager
@@ -579,6 +579,21 @@ router.route('/getfeedback').get((req, res) => {
         })
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
+
+
+// get emp hrs datetime
+router.route('/getemployeehrs').get((req, res) => {
+    Employee_hrs.find()
+        .then(emp_hrs => {
+            res.json({ response:emp_hrs });
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+
+
 
 
 

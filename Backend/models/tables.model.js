@@ -9,6 +9,12 @@ const tableSchema = new Schema({
         trim: true,
         unique: true
     },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     available: {
         type: Boolean,
         default: true,

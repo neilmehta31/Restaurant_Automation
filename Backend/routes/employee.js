@@ -9,6 +9,8 @@ require('dotenv').config();
 const {
     createJWT,
 } = require('../Utility/authJWT');
+const Orders = require('../models/orders.model');
+const BusboyNotif = require('../models/busboynotif.model');
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -209,7 +211,48 @@ router.route('/getProfieInfo').get((req,res)=>{
     .catch(err => {
         res.status(500).json({success:false,error:err})
     })
-})
+});
+
+
+// get order status for chef and waiter
+router.route('/getOrderStatus').get((req,res)=>{
+    Orders.find()
+    .then(response=>res.status(200).json({response:response}))
+    .catch(err => {
+        res.status(500).json({success:false,error:err})
+    })
+});
+
+router.route('/OrderFinished').put((req,res)=>{
+    let {mealId} = req.body;
+    Orders.findOne({mealId:mealId})
+    .then(order=>{
+    var orderFinished = true;
+    order.orderFinished = orderFinished;
+    order.save()
+    .then(order=>res.status(200).json({order :order}))
+    .catch(err => {
+        res.status(500).json({success:false,error:err})
+    }
+    ) 
+    }
+    )
+    .catch(error => res.status(400).json('Error: ' + error));    
+});
+
+
+
+
+
+// busboyo get request
+router.route('/getBusboyStatus').get((req,res)=>{
+    BusboyNotif.find()
+    .then(response=>res.status(200).json({response:response}))
+    .catch(err => {
+        res.status(500).json({success:false,error:err})
+    })
+});
+
 
 
 module.exports = router;

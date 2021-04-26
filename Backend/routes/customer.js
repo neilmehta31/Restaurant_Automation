@@ -11,6 +11,7 @@ let Tables = require('../models/tables.model');
 let Orders = require('../models/orders.model');
 let Feedback = require('../models/feedback.model');
 let BusboyNotif = require('../models/busboynotif.model');
+let meals = require('../models/manager.meals.model');
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const scoreRegexp = /[1-10]/;
@@ -320,15 +321,17 @@ router.route('/getTableStatus').get((req, res) => {
 });
 
 
-
-router.route('/tableSelection/:id').post((req, res) => {
-    Tables.findById(req.params.id)
+// updated table selection as a part of req,res
+router.route('/tableSelection').post((req, res) => {
+    let {tableId,email} = req.body;
+    Tables.findOne({tableId:tableId})
         .then(table => {
             let available = table.available;
             let reserved = table.reserved;
             if (available && !reserved) {
                 table.available = false;
                 table.tableId = table.tableId;
+                table.email = email;
                 table.save()
                     .then(response => { res.json({ result: response }) })
                     .catch(err => res.status(400).json({ error: err }));
@@ -376,11 +379,16 @@ router.route('/notifybusboy').post((req, res) => {
 router.route('/orderMeal').post((req,res)=>{
     let {mealId,tableId,email} = req.body;
     var orderId;
+    var mealName;
+    meals.findOne({mealId:mealId})
+    .then(meal=>{
+mealName = meal.mealName;
+    })
     Orders.find()
     .then(orders=>{
         orderId = orders.length+1;
 
-        const newOrder = new Orders({ mealId,tableId,orderId,email });
+        const newOrder = new Orders({mealName, mealId,tableId,orderId,email });
     newOrder.save()
     .then(() => res.json({ MESSAGE: 'Order added to the database', Result: newOrder }))
     .catch(error => res.status(400).json('Error :' + error));

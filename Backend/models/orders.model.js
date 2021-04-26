@@ -13,6 +13,12 @@ const orderSchema = new Schema({
         required: true,
         trim: true,
     },
+    mealName: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     email: {
         type: String,
         required: true,
