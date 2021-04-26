@@ -52,14 +52,14 @@ router.route('/meals/delete/:id').delete((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/meals/update/:id').post((req, res) => {
-
-    meals.findById(req.params.id)
+router.route('/meals/update').put((req, res) => {
+    const mealId = req.body.mealId;
+    meals.findOne({mealId:mealId})
         .then(meals => {
-            meals.mealName = req.body.mealName;
-            meals.price = req.body.price;
-            meals.preptime = req.body.preptime;
-            meals.mealId = req.body.mealId;
+            meals.mealName = req.body.mealName!=null ? req.body.mealName: meals.mealName;
+            meals.price = req.body.price!=null ? req.body.price: meals.price;
+            meals.preptime = req.body.preptime!=null ? req.body.preptime: meals.preptime;
+            meals.mealId = req.body.mealId!=null ? req.body.mealId: meals.mealId;
 
             meals.save()
                 .then(() => res.json({ MESSAGE: 'The meals database is updated.', Result: meals }))
