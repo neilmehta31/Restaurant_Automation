@@ -159,20 +159,35 @@ server.on('request', (req, res) => {
         if (isVerifySignature) {
           console.log("Checksum Matched");
           // console.log(data);
-                transaction = new Transaction({
-                  ORDERID:data.ORDERID,
-                  MID:data.MID,
-                  TXNID:data.TXNID,
-                  TXNAMOUNT:data.TXNAMOUNT,
-                  PAYMENTMODE:data.PAYMENTMODE,
-                  CURRENCY:data.CURRENCY,
-                  TXNDATE:data.TXNDATE,
-                  STATUS:data.STATUS,
-                  RESPCODE:data.RESPCODE,
-                  RESPMSG:data.RESPMSG,
-                  GATEWAYNAME:data.GATEWAYNAME,
-                  BANKTXNID:data.BANKTXNID,
-                  BANKNAME:data.BANKNAME
+          datastore = JSON.parse(JSON.stringify(data));
+          const orderId = datastore.ORDERID;
+          const mId = datastore.MID;
+          const txnID = datastore.TXNID;
+          const txnAmount = datastore.TXNAMOUNT;
+          const paymentMode = datastore.PAYMENTMODE;
+          const currency = datastore.CURRENCY;
+          const txnDate = datastore.TXNDATE;
+          const status = datastore.STATUS;
+          const respcode = datastore.RESPCODE;
+          const respMsg = datastore.RESPMSG;
+          const gatewayName = datastore.GATEWAYNAME;
+          const bankTxnID = datastore.BANKTXNID;
+          const bankName = datastore.BANKNAME;
+          
+                transaction = new Transaction({     
+                  orderId,      
+                  mId ,
+                  txnID,
+                  txnAmount,
+                  paymentMode,
+                  currency,
+                  txnDate,
+                  status,
+                  respcode,
+                  respMsg,
+                  gatewayName,
+                  bankTxnID,
+                  bankName
                 });
                 transaction.save()
                   .then(response_trnsc => console.log('Result: success\nResponse : ' + response_trnsc))

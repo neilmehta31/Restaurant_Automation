@@ -3,55 +3,55 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema({
-    ORDERID: {
+    orderId: {
         type: String,
         required: true,
     },
-    MID: {
+    mId: {
         type: String,
         required: true,
     },
-    TXNID: {
+    txnID: {
         type: String,
         required: true,
     },
-    TXNAMOUNT: {
+    txnAmount: {
         type: String,
         required: true,
     },
-    PAYMENTMODE: {
+    paymentMode: {
         type: String,
         required: true,
     },
-    CURRENCY: {
+    currency: {
         type: String,
         required: true,
     },
-    TXNDATE: {
+    txnDate: {
         type: String,
         required: true,
     },
-    STATUS: {
+    status: {
         type: String,
         required: true,
     },
-    RESPCODE: {
+    respcode: {
         type: String,
         required: true,
     },
-    RESPMSG: {
+    respMsg: {
         type: String,
         required: true,
     },
-    GATEWAYNAME: {
+    gatewayName: {
         type: String,
         required: true,
     },
-    BANKTXNID: {
+    bankTxnID: {
         type: String,
         required: true,
     },
-    BANKNAME: {
+    bankName: {
         type: String,
         required: true,
     },
