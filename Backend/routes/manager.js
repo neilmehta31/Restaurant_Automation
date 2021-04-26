@@ -46,9 +46,10 @@ router.route('/meals/:id').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/meals/delete/:id').delete((req, res) => {
-    meals.findByIdAndDelete(req.params.id)
-        .then(() => res.json('meal deleted'))
+router.route('/meals/deleteOne').delete((req, res) => {
+    const mealId = req.body.mealId;
+    meals.findOneAndDelete({mealId:mealId})
+        .then(() => res.json({success:true,Message:'meal deleted'}))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
