@@ -332,7 +332,7 @@ router.route('/tablesUpdation/unreserve/:id').post((req, res) => {
 //Manager transaction details view report
 router.route('/transaction/report').get((req, res) => {
     Transaction.find()
-        .then(transaction => res.json(JSON.stringify(transaction)))
+        .then(transaction => res.json(transaction))
         .catch(error => res.status(400).json('Error: ' + error));
 });
 
