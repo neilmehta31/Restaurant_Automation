@@ -10,7 +10,7 @@ let Customer = require('../models/customer.model');
 let Tables = require('../models/tables.model');
 let Orders = require('../models/orders.model');
 let Feedback = require('../models/feedback.model');
-
+let BusboyNotif = require('../models/busboynotif.model');
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 const scoreRegexp = /[1-10]/;
@@ -346,6 +346,27 @@ router.route('/tableSelection/:id').post((req, res) => {
 //         .then(manager => res.json(manager))
 //         .catch(err => res.status(400).json('Error :' + err))
 // });
+
+
+
+// Busboy notification
+router.route('/notifybusboy').post((req, res) => {
+    let {tableId} = req.body;
+    Tables.find({tableId:tableId})
+        .then(table => {
+            let callbusboy = true; 
+
+            buscall = new BusboyNotif({tableId, callbusboy})
+            buscall.save()
+            .then(response => { res.json({ success:true,result: response }) })
+            .catch(err => res.status(400).json({ error: err }));
+            // customer.save()
+            //         .then(response => { res.json({ success:true,result: response }) })
+            //         .catch(err => res.status(400).json({ error: err }));
+           
+        }).catch(err => res.status(400).json({ errro: err }));
+});
+
 
 
 

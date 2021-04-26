@@ -3,22 +3,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const busboynotifSchema = new Schema({
-    email: {
+    tableId: {
         type: Number,
-        required: true,
-        trim: true,
+        required: true
     },
-    
     callbusboy: {
-        type: boolean,
-        default: false,
-        trim: true,
-        unique:true
+        type: Boolean,
+        required:true
     }
 }, {
     timestamps: true,
 });
 
-const BusboyNotif = mongoose.model('Busboy', busboynotifSchema);
+const BusboyNotif = mongoose.model('Busboynotif', busboynotifSchema);
 
 module.exports = BusboyNotif;
