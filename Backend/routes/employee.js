@@ -165,6 +165,42 @@ router.route('/forgotPassword').post((req, res) => {
 
 
 
+router.route('/updateinfo').put((req, res) => {
+
+    let { email ,phoneNo, firstname, surname} = req.body;
+
+    Employee.findOne({ email: email })
+        .then(employee => {
+            employee.phoneNo = req.body.phoneNo!=null ? req.body.phoneNo : employee.phoneNo;
+            employee.firstname = req.body.firstname!=null ? req.body.firstname :employee.firstname;
+            employee.surname = req.body.surname!=null ? req.body.surname : employee.surname;
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(employee.password, salt, function (err, hash) {
+                    if (err) throw err;
+                    employee.password = hash;
+                    employee.save()
+                        .then(response => {
+                            res.status(200).json({
+                                MESSAGE: 'Customer info is UPDATED in the database',
+                                success: true,
+                                result: response
+                            })
+                        })
+                        .catch(err => {
+                            res.status(500).json({
+                                errors: [{ error: err }]
+                            });
+                        });
+                });
+            });
+        }).catch(err => res.status(400).json('Error :' + err));
+});
+
+
+
+
+
+
 
 router.route('getProfieInfo').get((req,res)=>{
     const {email} = req.body;

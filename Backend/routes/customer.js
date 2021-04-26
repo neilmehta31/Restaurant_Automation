@@ -10,6 +10,7 @@ let Customer = require('../models/customer.model');
 let Tables = require('../models/tables.model');
 let Orders = require('../models/orders.model');
 
+
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 // router.route('/all').get((req, res) => {
@@ -297,12 +298,12 @@ router.route('/tableSelection/:id').post((req, res) => {
 
 
 
-//Meals database access to the manager
-router.route('/meals/all').get((req, res) => {
-    meals.find()
-        .then(manager => res.json(manager))
-        .catch(err => res.status(400).json('Error :' + err))
-});
+// //Meals database access to the manager
+// router.route('/meals/all').get((req, res) => {
+//     meals.find()
+//         .then(manager => res.json(manager))
+//         .catch(err => res.status(400).json('Error :' + err))
+// });
 
 
 
