@@ -202,7 +202,7 @@ router.route('/updateinfo').put((req, res) => {
 
 
 
-router.route('getProfieInfo').get((req,res)=>{
+router.route('/getProfieInfo').get((req,res)=>{
     const {email} = req.body;
     Employee.findOne({email:email})
     .then(response=>res.status(200).json({success:true,result: response}))

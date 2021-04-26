@@ -49,7 +49,7 @@ router.route('/meals/:id').get((req, res) => {
 router.route('/meals/deleteOne').delete((req, res) => {
     const mealId = req.body.mealId;
     meals.findOneAndDelete({mealId:mealId})
-        .then(() => res.json({success:true,Message:'meal deleted'}))
+        .then(() => res.json({deleteMealId:mealId, success:true,Message:'meal deleted'}))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
