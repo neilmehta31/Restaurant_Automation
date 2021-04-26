@@ -9,10 +9,11 @@ const {
 let Customer = require('../models/customer.model');
 let Tables = require('../models/tables.model');
 let Orders = require('../models/orders.model');
+let Feedback = require('../models/feedback.model');
 
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-
+const scoreRegexp = /[1-10]/;
 // router.route('/all').get((req, res) => {
 //     Customer.find()
 //         .then(customers => res.json(customers))
@@ -265,6 +266,47 @@ router.route('/updateinfo').post((req, res) => {
 
 
 
+
+// Customer feedback
+
+router.route('/feedback').post((req,res)=>{
+    let {restaurant_ambience,restaurant_service,restaurant_food,additional_comments} = req.body;
+    var feedbackID;
+    let errors=[];
+    if (!restaurant_ambience) {
+        errors.push({ restaurant_ambience: "required" });
+    }
+    if (!restaurant_service) {
+        errors.push({ restaurant_service: "required" });
+    }
+    if (!restaurant_food) {
+        errors.push({ restaurant_food: "required" });
+    }
+    // if (!scoreRegexp.test(restaurant_ambience)) {
+    //     errors.push({ restaurant_ambience: "invalid" });
+    // }
+    // if (!scoreRegexp.test(restaurant_service)) {
+    //     errors.push({ restaurant_service: "invalid" });
+    // }
+    // if (!scoreRegexp.test(restaurant_food)) {
+    //     errors.push({ restaurant_food: "invalid" });
+    // }
+    if (errors.length > 0) {
+        return res.status(422).json({ errors: errors });
+    }
+    Feedback.find()
+    .then(feedback=>{
+        feedbackID = feedback.length+1;
+        console.log(feedbackID);
+
+        const newFeedback = new Feedback({feedbackID,restaurant_ambience,restaurant_service,restaurant_food,additional_comments});
+        newFeedback.save()
+        .then(() => res.json({ MESSAGE: 'Feedback added to the database', Result: newFeedback }))
+        .catch(error => res.status(400).json('Error :' + error));
+    })
+    .catch(error => res.status(400).json('Error: ' + error));
+    
+})
 
 
 

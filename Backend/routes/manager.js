@@ -13,6 +13,7 @@ let Manager = require('../models/manager.model');
 let Tables = require('../models/tables.model');
 let Customer = require('../models/customer.model');
 let Transaction = require('../models/transaction.model');
+const Feedback = require('../models/feedback.model');
 
 
 
@@ -565,6 +566,18 @@ router.route('/signup').post((req, res, next) => {
                 errors: [{ error: 'Something went wrong' }]
             });
         })
+});
+
+
+
+
+// Get feedback for the manager
+router.route('/getfeedback').get((req, res) => {
+    Feedback.find()
+        .then(feedback => {
+            res.json({ feedback: feedback });
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
 });
 
 
