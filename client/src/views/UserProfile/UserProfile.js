@@ -60,7 +60,7 @@ export default function UserProfile() {
 
 
   const updateProfileButton = ()=>{
-    Axios.post("http://localhost:5000/api/customer/updateinfo", {    
+    Axios.post("http://rest-auto-api.herokuapp.com/api/customer/updateinfo", {    
       email,
       
         phoneNo,

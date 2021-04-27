@@ -32,7 +32,7 @@ function Login() {
   };
 
   const redirectToCustomer = () => {
-    Axios.post("http://localhost:5000/api/customer/signin", {
+    Axios.post("http://rest-auto-api.herokuapp.com/api/customer/signin", {
       email,
       password,
     })
@@ -52,7 +52,7 @@ function Login() {
   };
 
   const redirectToCustomerSignup = () => {
-    Axios.post("http://localhost:5000/api/customer/signup", {
+    Axios.post("http://rest-auto-api.herokuapp.com/api/customer/signup", {
       firstname,
       surname,
       phoneNo,

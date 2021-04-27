@@ -32,7 +32,7 @@ export default function Employee() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/employee/all").then((response) => {
+    const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/manager/employee/all").then((response) => {
 
               console.log(response);
   
@@ -42,7 +42,7 @@ export default function Employee() {
       
        };
 
-       const addEmployee = (e) => {Axios.post("http://localhost:5000/api/manager/employee/add",e).then((response) => {
+       const addEmployee = (e) => {Axios.post("http://rest-auto-api.herokuapp.com/api/manager/employee/add",e).then((response) => {
 
         console.log(response);
 
@@ -52,7 +52,7 @@ export default function Employee() {
 
  };   
 
- const updateEmployee = (e) =>{Axios.post("http://localhost:5000/api/manager/employee/update",e).then((response) => {
+ const updateEmployee = (e) =>{Axios.post("http://rest-auto-api.herokuapp.com/api/manager/employee/update",e).then((response) => {
   // console.log(name);
   console.log(response);
 }).catch((err) => {
@@ -61,7 +61,7 @@ export default function Employee() {
 };
   
 
-const deleteEmployee = (e) =>{Axios.delete("http://localhost:5000/api/manager/employee/delete",e).then((response) => {
+const deleteEmployee = (e) =>{Axios.delete("http://rest-auto-api.herokuapp.com/api/manager/employee/delete",e).then((response) => {
   console.log(e);
   console.log(response);
 }).catch((err) => {

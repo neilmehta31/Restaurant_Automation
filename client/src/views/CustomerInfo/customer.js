@@ -32,7 +32,7 @@ export default function Customer() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/customer/all").then((response) => {
+    const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/manager/customer/all").then((response) => {
 
               console.log(response);
   
@@ -42,7 +42,7 @@ export default function Customer() {
       
        };
 
-//        const addCustomer = (e) => {Axios.post("http://localhost:5000/api/manager/customer/add",e).then((response) => {
+//        const addCustomer = (e) => {Axios.post("http://rest-auto-api.herokuapp.com/api/manager/customer/add",e).then((response) => {
 
 //         console.log(response);
 

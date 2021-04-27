@@ -27,7 +27,7 @@ function Table() {
       set_classname("tableshape");
     }
 
-    Axios.post('http://localhost:5000/api/customer/tableSelection',{
+    Axios.post('http://rest-auto-api.herokuapp.com/api/customer/tableSelection',{
       tableid,
       available
       
@@ -56,7 +56,7 @@ function Table() {
       setAvailable(0);
       set_classname("tableshape");
     }
-    Axios.post('http://localhost:5000/api/customer/tableSelection',{
+    Axios.post('http://rest-auto-api.herokuapp.com/api/customer/tableSelection',{
       tableid,
       available
       

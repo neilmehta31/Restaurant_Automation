@@ -36,7 +36,7 @@ function EmployeeLogin (){
 
   const redirectToEmployeeSignin = () => {
     
-        Axios.post("http://localhost:5000/api/employee/signin", {
+        Axios.post("http://rest-auto-api.herokuapp.com/api/employee/signin", {
         email,
         password
       }).then((response) => {
@@ -59,7 +59,7 @@ function EmployeeLogin (){
 
       const redirectToCustomerSignup = () => {
     
-        Axios.post("http://localhost:5000/api/customer/signup", {
+        Axios.post("http://rest-auto-api.herokuapp.com/api/customer/signup", {
         firstname,
         surname ,
         phoneNo,

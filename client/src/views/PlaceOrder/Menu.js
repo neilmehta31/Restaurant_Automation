@@ -29,7 +29,7 @@ export default function Menu() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/meals/all").then((response) => {
+    const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/manager/meals/all").then((response) => {
 
               console.log(response);
   
@@ -39,7 +39,7 @@ export default function Menu() {
       
        };
 
-       const addMenu = (e) => {Axios.post("http://localhost:5000/api/manager/meals/add",e).then((response) => {
+       const addMenu = (e) => {Axios.post("http://rest-auto-api.herokuapp.com/api/manager/meals/add",e).then((response) => {
         // console.log(name);
         console.log(response);
       }).catch((err) => {
@@ -49,7 +49,7 @@ export default function Menu() {
 
 
        
-      const deleteMenu = (e) => {Axios.delete("http://localhost:5000/api/manager/meals/deleteOne",e).then((response) => {
+      const deleteMenu = (e) => {Axios.delete("http://rest-auto-api.herokuapp.com/api/manager/meals/deleteOne",e).then((response) => {
         // console.log(e);
         console.log(e);
         console.log(response);
@@ -61,7 +61,7 @@ export default function Menu() {
 
 
        
-      const updateMenu = (e) =>{Axios.put("http://localhost:5000/api/manager/meals/update",e).then((response) => {
+      const updateMenu = (e) =>{Axios.put("http://rest-auto-api.herokuapp.com/api/manager/meals/update",e).then((response) => {
         // console.log(name);
         console.log(response);
       }).catch((err) => {

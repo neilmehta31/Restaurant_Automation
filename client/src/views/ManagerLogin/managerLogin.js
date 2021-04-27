@@ -30,7 +30,7 @@ function ManagerLogin (){
 
   const redirectToManagerSignin = () => {
     
-        Axios.post("http://localhost:5000/api/manager/signin", {
+        Axios.post("http://rest-auto-api.herokuapp.com/api/manager/signin", {
         email,
         password
       }).then((response) => {
@@ -51,7 +51,7 @@ function ManagerLogin (){
 
       const redirectToCustomerSignup = () => {
     
-        Axios.post("http://localhost:5000/api/customer/signup", {
+        Axios.post("http://rest-auto-api.herokuapp.com/api/customer/signup", {
         firstname,
         surname ,
         phoneNo,

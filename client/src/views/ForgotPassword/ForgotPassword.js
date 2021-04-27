@@ -29,7 +29,7 @@ function ForgotPassword() {
   };
 
   const setnewpassword = () => {
-    Axios.post("http://localhost:5000/api/customer/forgotPassword", {
+    Axios.post("http://rest-auto-api.herokuapp.com/api/customer/forgotPassword", {
       email,
       password,
     })
@@ -48,7 +48,7 @@ function ForgotPassword() {
   };
 
   const redirectToCustomerSignup = () => {
-    Axios.post("http://localhost:5000/api/customer/signup", {
+    Axios.post("http://rest-auto-api.herokuapp.com/api/customer/signup", {
       firstname,
       surname,
       phoneNo,

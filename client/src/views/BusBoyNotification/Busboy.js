@@ -27,7 +27,7 @@ export default function Busboy() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/employee/getBusboyStatus").then((response) => {
+    const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/employee/getBusboyStatus").then((response) => {
 
               console.log(response);
   

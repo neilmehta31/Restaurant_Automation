@@ -30,7 +30,7 @@ export default function TableTrans() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/transaction/report").then((response) => {
+    const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/manager/transaction/report").then((response) => {
 
               console.log(response);
   

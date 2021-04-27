@@ -21,7 +21,7 @@ function Feedback() {
     const[restaurant_food,setRestaurant_food]=useState('');
     const[additional_comments,setAdditional_comments]=useState('');
 
-    const feedbacksubmit = () => {Axios.post("http://localhost:5000/api/customer/feedback",{
+    const feedbacksubmit = () => {Axios.post("http://rest-auto-api.herokuapp.com/api/customer/feedback",{
         restaurant_ambience,
         restaurant_service,
         restaurant_food,   
