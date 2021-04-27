@@ -51,7 +51,25 @@ export default function Employee() {
  })
 
  };   
+
+ const updateEmployee = (e) =>{Axios.post("http://localhost:5000/api/manager/employee/update",e).then((response) => {
+  // console.log(name);
+  console.log(response);
+}).catch((err) => {
+  console.log(err);
+});
+};
   
+
+const deleteEmployee = (e) =>{Axios.delete("http://localhost:5000/api/manager/employee/delete",e).then((response) => {
+  console.log(e);
+  console.log(response);
+}).catch((err) => {
+  console.log(err);
+});
+};
+
+
     return (
       <div>
           
@@ -77,22 +95,37 @@ export default function Employee() {
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
-  
+                
+                updateEmployee(newData);
+
                 resolve();
               }, 1000)
               
             }),
-          // onRowDelete: oldData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       const dataDelete = [...data];
-          //       const index = oldData.tableData.id;
-          //       dataDelete.splice(index, 1);
-          //       setData([...dataDelete]);
+          onRowDelete: oldData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...data];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setData([...dataDelete]);
                 
-          //       resolve()
-          //     }, 1000)
-          //   }),
+                deleteEmployee(oldData);
+
+                resolve()
+              }, 1000)
+            }),
+        }}
+        options={{
+          headerStyle: {
+            backgroundColor: '#01579b',
+            color: '#FFF'
+          },
+          rowStyle: {
+            backgroundColor: '#F7CAC9',
+          }
+         
+
         }}
       />
       </div>

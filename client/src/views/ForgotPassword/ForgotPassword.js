@@ -7,7 +7,7 @@ import Axios from "axios";
 
 let useremail;
 
-function Login() {
+function ForgotPassword() {
   const [containername, setContainer] = useState({
     containername: "container",
   });
@@ -27,21 +27,17 @@ function Login() {
   const signInButton = () => {
     setContainer({ containername: "container" });
   };
-  const redirectToForgotPassword = () => {
-    history.push("/forgotPassword");
-  };
 
-  const redirectToCustomer = () => {
-    Axios.post("http://localhost:5000/api/customer/signin", {
+  const setnewpassword = () => {
+    Axios.post("http://localhost:5000/api/customer/forgotPassword", {
       email,
       password,
     })
       .then((response) => {
         if (response.data.success) {
           useremail = response.data.message.email;
-          window.localStorage.setItem("email", email);
           //console.log(response.data.message.email);
-          history.push("/admin/dashboard");
+          history.push("/login");
           console.log(useremail);
         }
         console.log(response.data.success);
@@ -78,7 +74,7 @@ function Login() {
   return (
     <div className="logincontainer">
       <div>
-        <h2 className="loginh2">Customer Login </h2>
+        <h2 className="loginh2">Forgot Password </h2>
       </div>
 
       <div className={containername.containername} id="container">
@@ -159,7 +155,7 @@ function Login() {
         </div>
         <div className="form-container sign-in-container">
           <form className="loginform" action="#">
-            <h1 className="colorCreateAccount loginh1">Sign in</h1>
+            <h1 className="colorCreateAccount loginh1">Forgot Password</h1>
             {/* <div className="social-container">
                 <a href="#" className="social logina">
                   <i className="fab fa-facebook-f"></i>
@@ -171,7 +167,7 @@ function Login() {
                   <i className="fab fa-linkedin-in"></i>
                 </a>
               </div> */}
-            <span className="loginspan">or use your account</span>
+            <span className="loginspan"></span>
             <input
               className="logininput"
               type="email"
@@ -183,19 +179,24 @@ function Login() {
             <input
               className="logininput"
               type="password"
-              placeholder="Password"
+              placeholder="New Password"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
-            <a className="logina" href="#" onClick={redirectToForgotPassword}>
-              Forgot your password?
-            </a>
+            <input
+              className="logininput"
+              type="password"
+              placeholder="Confirm Password"
+              onChange={(e) => {
+                setPasswordConfirmation(e.target.value);
+              }}
+            />
             <button
               className="buttonclass rounded-pill"
-              onClick={redirectToCustomer}
+              onClick={setnewpassword}
             >
-              Sign In
+              Set Password
             </button>
           </form>
         </div>
@@ -215,17 +216,17 @@ function Login() {
               </button>
             </div>
             <div className="overlay-panel overlay-right">
-              <h1 className="loginh1">Hello, Friend!</h1>
+              <h1 className="loginh1">Forgot your password?</h1>
               <p className="loginp">
                 Enter your personal details and start journey with us
               </p>
-              <button
+              {/* <button
                 className=" buttonclass ghost rounded-pill "
                 id="signUp"
                 onClick={signUpButton}
               >
                 Sign Up
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -234,4 +235,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default ForgotPassword;

@@ -9,17 +9,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../components/Navbars/Navbar.js";
 import Footer from "../components/Footer/Footer.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
-import FixedPlugin from "../components/FixedPlugin/FixedPlugin.js";
-
-import routes from "../chefRoute";
-
+ 
+import routes from "../waiterRoute.js";
+ 
 import styles from "../assets/jss/material-dashboard-react/layouts/adminStyle.js";
-
+ 
 import bgImage from "../assets/img/food.jpg";
 import logo from "../assets/img/reactlogo.png";
-
+ 
 let ps;
-
+ 
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
@@ -37,9 +36,9 @@ const switchRoutes = (
     <Redirect from="/waiter" to="/waiter/notification" />
   </Switch>
 );
-
+ 
 const useStyles = makeStyles(styles);
-
+ 
 export default function Waiter({ ...rest }) {
   // styles
   const classes = useStyles();
@@ -110,6 +109,7 @@ export default function Waiter({ ...rest }) {
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
         />
+ 
         {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
         {getRoute() ? (
           <div className={classes.content}>

@@ -28,7 +28,7 @@ export default function Header(props) {
   const history=useHistory();
  
   const scanQrfunc = () => {
-    console.log("meow");
+    // console.log("meow");
     history.push("/qr");
   };
  
@@ -81,9 +81,9 @@ export default function Header(props) {
             <Menu />
           </IconButton>
         </Hidden>
-        <button type="button" className="btn rounded-pill changecolour" onClick={scanQrfunc}>
+        {/* <button type="button" className="btn rounded-pill changecolour" onClick={scanQrfunc}>
           QR
-        </button>
+        </button> */}
       </Toolbar>
     </AppBar>
   );

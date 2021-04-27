@@ -7,6 +7,7 @@ import Card from "../../components/Card/Card.js";
 import CardHeader from "../../components/Card/CardHeader.js";
 import CardBody from "../../components/Card/CardBody.js";
 import useremail from '../EmployeeLogin/EmployeeLogin';
+import Chef from './Chef.js';
 
 const styles = {
   cardCategoryWhite: {
@@ -93,29 +94,11 @@ export default function PlaceOrder() {
   const classes = useStyles();
   const editSt = editSyles();
 
-  const displaylist = (tablelist) => {
-    
-  }
-
   
 
   return (
-    Object.keys(tablelist).map(table => {
-      return(<div>
-        <Card>
-            <CardHeader color="primary">
-                <h4>{table}</h4>
-            </CardHeader>
-            <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={tablelist[table].tableHead}
-              tableData={tablelist[table].tableData}
-            />{console.log(useremail)}
-            </CardBody>
-        </Card>
+         <div>
+        <Chef />
         </div>
-      )
-    })
-  );
+      );
 }

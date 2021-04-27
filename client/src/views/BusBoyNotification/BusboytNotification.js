@@ -10,6 +10,7 @@ import CardHeader from "../../components/Card/CardHeader.js";
 import CardBody from "../../components/Card/CardBody.js";
 import { yellow } from "@material-ui/core/colors";
 import { number } from "prop-types";
+import Busboy from './Busboy.js';
 
 const styles = {
   cardCategoryWhite: {
@@ -47,23 +48,23 @@ const editSyles = makeStyles({
     background: "blue",
   },
 });
-let input =[
-    {
-        tableHeaderColor:"primary",
-        tableHead:["Item", "Cost"],
-        tableData:[
-            ["Veg Pizza", "₹160"],
-            ["Paneer Pizza", "₹200"],
-            ["Peri Peri Pizza", "₹160"],
-            ["Cheese Corn Pizza", "₹180"],
-            ["Paneer Pizza", "₹160"],
-          ],
-    }
-]
+// let input =[
+//     {
+//         tableHeaderColor:"primary",
+//         tableHead:["Item", "Cost"],
+//         tableData:[
+//             ["Veg Pizza", "₹160"],
+//             ["Paneer Pizza", "₹200"],
+//             ["Peri Peri Pizza", "₹160"],
+//             ["Cheese Corn Pizza", "₹180"],
+//             ["Paneer Pizza", "₹160"],
+//           ],
+//     }
+// ]
 
-let tablelist =[
-    "table1","table2"
-]
+// let tablelist =[
+//     "table1","table2"
+// ]
 
 // function displaylist(){
 //     const classes = useStyles();
@@ -80,55 +81,34 @@ export default function BusboyNotification() {
   const classes = useStyles();
   const editSt = editSyles();
 
-  const displaylist = (tablelist) => {
-    return(
-        <Card>
-            <CardHeader color="primary">
-                <h4>{"name"}</h4>
-            </CardHeader>
-            <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
-              tableData={[
-                ["Veg Pizza", "₹160"],
-                ["Paneer Pizza", "₹200"],
-                ["Peri Peri Pizza", "₹160"],
-                ["Cheese Corn Pizza", "₹180"],
-                ["Paneer Pizza", "₹160"],
-              ]}
-            /> 
-            </CardBody>
-        </Card>
-    );
-  }
+  // const displaylist = (tablelist) => {
+  //   return(
+  //       <Card>
+  //           <CardHeader color="primary">
+  //               <h4>{"name"}</h4>
+  //           </CardHeader>
+  //           <CardBody>
+  //           <Table
+  //             tableHeaderColor="primary"
+  //             tableHead={["Item", "Cost"]}
+  //             tableData={[
+  //               ["Veg Pizza", "₹160"],
+  //               ["Paneer Pizza", "₹200"],
+  //               ["Peri Peri Pizza", "₹160"],
+  //               ["Cheese Corn Pizza", "₹180"],
+  //               ["Paneer Pizza", "₹160"],
+  //             ]}
+  //           /> 
+  //           </CardBody>
+  //       </Card>
+  //   );
+  // }
 
   
 
   return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        {/* <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Pizza</h4>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={["Item", "Cost"]}
-              tableData={[
-                ["Veg Pizza", "₹160"],
-                ["Paneer Pizza", "₹200"],
-                ["Peri Peri Pizza", "₹160"],
-                ["Cheese Corn Pizza", "₹180"],
-                ["Paneer Pizza", "₹160"],
-              ]}
-            /> 
-
-          </CardBody>
-        </Card> */}
-        {displaylist(tablelist)}
-      </GridItem>
-    </GridContainer>
+    <div>
+      <Busboy />
+    </div>  
   );
 }

@@ -10,15 +10,20 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "history": "^5.0.0",
     "material-table": "^1.69.3",
     "material-ui": "^0.20.2",
+    "mongoose": "^5.12.5",
     "perfect-scrollbar": "^1.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-feedback-popup": "^1.3.1",
     "react-qr-reader": "^2.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-simple-user-feedback": "^0.1.3",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
@@ -46,7 +51,7 @@
       "last 1 safari version"
     ]
   },
-   "engines": {
+  "engines": {
     "node": "14.15.5"
   },
   "devDependencies": {

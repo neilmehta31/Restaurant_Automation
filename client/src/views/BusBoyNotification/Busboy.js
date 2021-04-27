@@ -4,17 +4,12 @@ import Axios from 'axios';
 import {useEffect} from 'react';
 
 
-export default function Customer() {
+export default function Busboy() {
     const { useState } = React ;
   
     const [columns, setColumns] = useState([
-      // {title:'Employee ID',field : 'empId'},
-      { title: 'First Name' , field: 'firstname' },
-      { title: 'Sur Name', field: 'surname'},
-      { title: 'Email', field: 'email'},
-      // { title: 'Designation', field: 'designation'},
-      // { title: 'Salary', field: 'salary'},
-      { title: 'Phone No', field: 'phoneNo'},
+      { title: 'Table Number' , field: 'tableId'},
+      { title: 'CallBusBoy', field: 'callbusboy',type:'boolean'},
     //   { title: 'Name Of HR', field: 'Name_of_HR', type: 'numeric' },
     //   {
     //     title: 'Est_Yr',
@@ -32,31 +27,21 @@ export default function Customer() {
         getData();
     }, []);
   
-    const getData = () => {Axios.get("http://localhost:5000/api/manager/customer/all").then((response) => {
+    const getData = () => {Axios.get("http://localhost:5000/api/employee/getBusboyStatus").then((response) => {
 
               console.log(response);
   
-              setData(response.data); 
+              setData(response.data.response); 
             //   console.log(response.data[0].mealName);
        })
       
        };
-
-//        const addCustomer = (e) => {Axios.post("http://localhost:5000/api/manager/customer/add",e).then((response) => {
-
-//         console.log(response);
-
-//         // setData(response.data); 
-//       //   console.log(response.data[0].mealName);
-//      })
-
-//  };   
   
     return (
       <div>
           
       <MaterialTable
-        title="Set Info"
+        title="Order"
         columns={columns}
         data={data}
         editable={{
@@ -65,8 +50,6 @@ export default function Customer() {
         //       setTimeout(() => {
         //         setData([...data, newData]);
                 
-        //         addCustomer(newData);
-        //         console.log(newData);
         //         resolve();
         //       }, 1000)
         //     }),
@@ -80,31 +63,28 @@ export default function Customer() {
   
         //         resolve();
         //       }, 1000)
-              
+        //       // Axios.post('http')
         //     }),
-          // onRowDelete: oldData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       const dataDelete = [...data];
-          //       const index = oldData.tableData.id;
-          //       dataDelete.splice(index, 1);
-          //       setData([...dataDelete]);
+        //   onRowDelete: oldData =>
+        //     new Promise((resolve, reject) => {
+        //       setTimeout(() => {
+        //         const dataDelete = [...data];
+        //         const index = oldData.tableData.id;
+        //         dataDelete.splice(index, 1);
+        //         setData([...dataDelete]);
                 
-          //       resolve()
-          //     }, 1000)
-          //   }),
+        //         resolve()
+        //       }, 100)
+        //     }),
         }}
         options={{
           headerStyle: {
-            backgroundColor: '#01579b',
+            backgroundColor: '#C3447A',
             color: '#FFF'
           },
           rowStyle: {
-            backgroundColor: '#F7CAC9',
-          }
-         
-
-        }}
+            backgroundColor: '#F0EAD6',
+          }}}
       />
       </div>
     )

@@ -36,7 +36,7 @@ const switchRoutes = (
       }
       return null;
     })}
-    <Redirect from="/admin" to="/admin/setMenu" />
+    <Redirect from="/admin" to="/admin/bookTable" />
   </Switch>
 );
 

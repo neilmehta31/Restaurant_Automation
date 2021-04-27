@@ -41,9 +41,11 @@ export default function Meals() {
       <div>
           
       <MaterialTable
-        title="Order"
+        title="Place Order"
         columns={columns}
         data={data}
+        
+        onSelectionChange={(rows) => alert('You selected ' + rows.length + ' rows')}
         editable={{
         //   onRowAdd: newData =>
         //     new Promise((resolve, reject) => {
@@ -53,29 +55,39 @@ export default function Meals() {
         //         resolve();
         //       }, 1000)
         //     }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
+          // onRowUpdate: (newData, oldData) =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       const dataUpdate = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataUpdate[index] = newData;
+          //       setData([...dataUpdate]);
   
-                resolve();
-              }, 1000)
-              // Axios.post('http')
-            }),
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
+          //       resolve();
+          //     }, 1000)
+          //     // Axios.post('http')
+          //   }),
+          // onRowDelete: oldData =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       const dataDelete = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataDelete.splice(index, 1);
+          //       setData([...dataDelete]);
                 
-                resolve()
-              }, 1000)
-            }),
+          //       resolve()
+          //     }, 1000)
+          //   }),
+        }}
+        options={{
+          headerStyle: {
+            backgroundColor: '#B565A7',
+            color: '#FFF'
+          },
+          rowStyle: {
+            backgroundColor: '#F5D6C6',
+          },
+          selection: true,
         }}
       />
       </div>

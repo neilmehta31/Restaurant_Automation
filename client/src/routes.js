@@ -6,13 +6,30 @@ import DashboardPage from "./views/Dashboard/Dashboard.js";
 import PlaceOrder from "./views/PlaceOrder/PlaceOrder.js";
 // core components/views for RTL layout
 import { TableLayout } from "./views/BookTable/BookTable";
+import Feedback from './views/Feedback/feedback.js';
+import Orders from './views/Order/order.js';
+
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "/bookTable",
+    name: "Book Table",
+    icon: Language,
+    component: TableLayout,
+    layout: "/admin",
+  },
+  {
+    path: "/placeOrder",
+    name: "Place Order",
+    icon: Language,
+    component: PlaceOrder,
+    layout: "/admin",
+  },
+  {
+    path: "/order",
     name: "Order",
-    icon: Dashboard,
-    component: DashboardPage,
+    icon: Language,
+    component: Orders,
     layout: "/admin",
   },
   // {
@@ -22,18 +39,13 @@ const dashboardRoutes = [
   //   component: UserProfile,
   //   layout: "/admin",
   // },
+  
+
   {
-    path: "/placeOrder",
-    name: "Place Order",
+    path: "/feedback",
+    name: "Feedback",
     icon: Language,
-    component: PlaceOrder,
-    layout: "/admin",
-  },
-  {
-    path: "/bookTable",
-    name: "Book Table",
-    icon: Language,
-    component: TableLayout,
+    component: Feedback,
     layout: "/admin",
   },
 ];

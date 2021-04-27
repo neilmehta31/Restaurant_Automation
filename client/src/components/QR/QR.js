@@ -25,6 +25,12 @@ class QRRead extends Component {
         result: data,
       });
     }
+    console.log(this.state.result);
+    if(this.state.result==='https://github.com/neilmehta31/Restaurant_Automation')
+    {
+      this.props.history.push('/admin');
+    }
+    
   };
   handleError = (err) => {
     console.error(err);

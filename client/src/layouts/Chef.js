@@ -95,7 +95,7 @@ export default function Chef({ ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Customer Name"}
+        logoText={"CHEF"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}

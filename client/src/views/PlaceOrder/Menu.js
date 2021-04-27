@@ -8,8 +8,10 @@ export default function Menu() {
     const { useState } = React ;
   
     const [columns, setColumns] = useState([
+      { title: 'Meal Id', field: 'mealId'},
       { title: 'Name' , field: 'mealName' },
       { title: 'Price', field: 'price'},
+      { title: 'Preparation time', field:'preptime'},
     //   { title: 'Name Of HR', field: 'Name_of_HR', type: 'numeric' },
     //   {
     //     title: 'Est_Yr',
@@ -36,6 +38,37 @@ export default function Menu() {
        })
       
        };
+
+       const addMenu = (e) => {Axios.post("http://localhost:5000/api/manager/meals/add",e).then((response) => {
+        // console.log(name);
+        console.log(response);
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+
+
+       
+      const deleteMenu = (e) => {Axios.delete("http://localhost:5000/api/manager/meals/deleteOne",e).then((response) => {
+        // console.log(e);
+        console.log(e);
+        console.log(response);
+        // console.log(typeof e.mealId);
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+
+
+       
+      const updateMenu = (e) =>{Axios.put("http://localhost:5000/api/manager/meals/update",e).then((response) => {
+        // console.log(name);
+        console.log(response);
+      }).catch((err) => {
+        console.log(err);
+      });
+    };
+       
   
     return (
       <div>
@@ -49,6 +82,8 @@ export default function Menu() {
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 setData([...data, newData]);
+
+                addMenu(newData);
                 
                 resolve();
               }, 1000)
@@ -61,9 +96,12 @@ export default function Menu() {
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
   
+                console.log(newData);
+                console.log(index);
+                updateMenu(newData,index);
+
                 resolve();
               }, 1000)
-              Axios.post('http')
             }),
           onRowDelete: oldData =>
             new Promise((resolve, reject) => {
@@ -72,10 +110,26 @@ export default function Menu() {
                 const index = oldData.tableData.id;
                 dataDelete.splice(index, 1);
                 setData([...dataDelete]);
+
+                console.log(oldData);
                 
-                resolve()
+                deleteMenu(oldData);
+
+                resolve();
               }, 1000)
             }),
+        }}
+        options={{
+          headerStyle: {
+            backgroundColor: '#01579b',
+            // border
+            color: '#FFF'
+          },
+          rowStyle: {
+            backgroundColor: '#F7CAC9',
+          }
+         
+
         }}
       />
       </div>

@@ -45,8 +45,8 @@
 
 .buttonclass {
   border-radius: 20px;
-  border: 1px solid #3ab399;
-  background-color: #3ab399;
+  border: 1px solid #ab47bc;
+  background-color: #ab47bc;
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
@@ -171,9 +171,9 @@ button.ghost {
 }
 
 .overlay {
-  background: #3ab399;
-  background: -webkit-linear-gradient(to right, #3ab399, #3ab399);
-  background: linear-gradient(to right, #3ab399, #3ab399);
+  background: #ab47bc;
+  background: -webkit-linear-gradient(to right, #ab47bc, #ab47bc);
+  background: linear-gradient(to right, #ab47bc, #ab47bc);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -238,7 +238,7 @@ button.ghost {
 }
 
 .colorCreateAccount {
-  color: #3ab399;
+  color: #ab47bc;
 }
 .changeOpacityToZero {
   opacity: 0;
