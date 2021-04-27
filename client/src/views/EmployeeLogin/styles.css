@@ -15,12 +15,26 @@
 //   margin: -20px 0 50px;
 // } */
 
+.wholeContainer{
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+  background-image: url("../../assets/img/employee.jpg") !important;
+  background-size: cover;
+  opacity: 1;
+}
+
 .loginh1 {
   font-weight: bold;
   margin: 0;
 }
 
 .loginh2 {
+  font-size: -webkit-xxx-large;
+    font-weight: bold;
+    color: aliceblue;
+    text-align: center;
   text-align: center;
 }
 
@@ -89,7 +103,7 @@ button.ghost {
 }
 
 .logincontainer {
-  background: #f6f5f7;
+  background: transparent !important;
   display: flex;
   justify-content: center;
   align-items: center;

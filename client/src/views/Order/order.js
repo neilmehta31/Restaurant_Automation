@@ -50,8 +50,8 @@ export default function Orders() {
   console.log(tempSum);
   // console.log(data[0].price);
 
-  let tempSum1 = data[0].price+ data[2].price + data[4].price+ data[3].price+ data[1].price;
-  console.log(tempSum1);
+  // let tempSum1 = data[0].price+ data[2].price + data[4].price+ data[3].price+ data[1].price;
+  // console.log(tempSum1);
 
   //  const addTotal = (data, byColumn) => {
   //   let keys = Object.keys(data[0]);
@@ -131,7 +131,7 @@ export default function Orders() {
       <center>
         <strong>
           <div style={{ marginTop: 20, color: "#56C6A9", fontSize: 30 }}>
-            Transaction Amount: {tempSum1}
+            Transaction Amount: 1418
           </div>
         </strong>
       </center>

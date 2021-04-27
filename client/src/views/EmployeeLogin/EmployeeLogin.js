@@ -87,6 +87,7 @@ function EmployeeLogin (){
 
   
     return (
+      <div className="wholeContainer">
       <div className="logincontainer">
         <div>
           <h2 className="loginh2">Employee Login </h2>
@@ -219,6 +220,7 @@ function EmployeeLogin (){
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
