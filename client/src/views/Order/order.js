@@ -3,7 +3,6 @@ import MaterialTable from "material-table";
 import Axios from "axios";
 import { useEffect } from "react";
 import Button from "@material-ui/core/Button";
-import payment from "../Payments/paytm-nodejs/index.js";
 
 export default function Orders() {
   const { useState } = React;
@@ -74,9 +73,9 @@ export default function Orders() {
   //   return [...data, emptyRow, totalRow];
   // }
 
-  const PaymentButton = () => {
-    payment(window.localStorage.getItem("email"), 1, tempSum);
-  };
+  const paymentfunc = () => {
+    window.open("https://node-paytm.herokuapp.com/_pay/init","payment","width=550,height=300,left=150,top=200,toolbar=0,status=0,")
+  }
 
   return (
     <div>
@@ -142,7 +141,7 @@ export default function Orders() {
           variant="contained"
           color="secondary"
           onClick={() => {
-            PaymentButton();
+              paymentfunc();
           }}
         >
           Payment
