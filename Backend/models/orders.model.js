@@ -13,6 +13,10 @@ const orderSchema = new Schema({
         required: true,
         trim: true,
     },
+    price: {
+        type: Number,
+        required: true,
+    },
     mealName: {
         type: String,
         required: true,

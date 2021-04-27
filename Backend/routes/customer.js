@@ -374,21 +374,22 @@ router.route('/notifybusboy').post((req, res) => {
 
 
 
-
 // Customers order the meals
 router.route('/orderMeal').post((req,res)=>{
     let {mealId,tableId,email} = req.body;
     var orderId;
+    var price;
     var mealName;
     meals.findOne({mealId:mealId})
     .then(meal=>{
 mealName = meal.mealName;
+price = meal.price;
     })
     Orders.find()
     .then(orders=>{
         orderId = orders.length+1;
 
-        const newOrder = new Orders({mealName, mealId,tableId,orderId,email });
+        const newOrder = new Orders({mealName, mealId,tableId,orderId,email,price });
     newOrder.save()
     .then(() => res.json({ MESSAGE: 'Order added to the database', Result: newOrder }))
     .catch(error => res.status(400).json('Error :' + error));
@@ -397,6 +398,16 @@ mealName = meal.mealName;
     .catch(error => res.status(400).json('Error: ' + error));    
 });
 
+
+
+router.route('/getcustomerOrders').post((req,res)=>{
+    const {email} = req.body;
+    Orders.find({email:email})
+    .then(response=>res.status(200).json({response:response}))
+    .catch(err => {
+        res.status(500).json({success:false,error:err})
+    })
+});
 
 
 // ** Transaction util for the customer is inside the /paytm-nodejs/index.js file.
