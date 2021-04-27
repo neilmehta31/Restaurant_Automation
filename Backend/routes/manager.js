@@ -84,8 +84,9 @@ router.route('/employee/all').get((req, res) => {
         .catch(error => res.status(400).json('Error: ' + error));
 });
 
-router.route('/employee/delete/:id').delete((req, res) => {
-    Employee.findByIdAndDelete(req.params.id)
+router.route('/employee/delete').delete((req, res) => {
+    let {empId} = req.body;
+    Employee.findOneAndDelete({empId:empId})
         .then(() => res.json('Employee fired and data deleted. '))
         .catch(err => res.status(400).json('Error : ' + err));
 });
@@ -97,6 +98,7 @@ const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 router.route('/employee/add').post((req, res) => {
     let { empId, firstname, surname, email, phoneNo, salary, designation } = req.body;
     let errors = [];
+    var password= "employee@123";
     if (!empId) {
         errors.push({ empId: "required" });
     }
@@ -170,18 +172,18 @@ router.route('/employee/add').post((req, res) => {
 });
 
 
-router.route('/employee/update/:id').post((req, res) => {
-
-    Employee.findById(req.params.id)
+router.route('/employee/update').post((req, res) => {
+let email = req.body.email
+    Employee.findOne({email:email})
         .then(employee => {
-            employee.empId = req.body.empId;
-            employee.firstname = req.body.firstname;
-            employee.surname = req.body.surname;
-            employee.email = req.body.email;
-            employee.password = req.body.password;
-            employee.phoneNo = req.body.phoneNo;
-            employee.salary = req.body.salary;
-            employee.designation = req.body.designation;
+            employee.empId = req.body.empId!=null?req.body.empId:employee.empId;
+            employee.firstname = req.body.firstname!=null?req.body.firstname:employee.firstname;
+            employee.surname = req.body.surname!=null?req.body.surname:employee.surname;
+            employee.email = req.body.email!=null?req.body.email:employee.email;
+            employee.password = req.body.password!=null?req.body.password:employee.password;
+            employee.phoneNo = req.body.phoneNo!=null?req.body.phoneNo:employee.phoneNo;
+            employee.salary = req.body.salary!=null?req.body.salary:employee.salary;
+            employee.designation = req.body.designation!=null?req.body.designation:employee.designation;
 
             bcrypt.genSalt(10, function (err, salt) {
                 bcrypt.hash(employee.password, salt, function (err, hash) {
