@@ -79,7 +79,7 @@ function ManagerLogin (){
 
   
     return (
-      <div className = "wholeContainer">
+      <div className = "wholeContainerman">
       <div className="logincontainer">
         <div>
           <h2 className="loginh2">Manager Login </h2>

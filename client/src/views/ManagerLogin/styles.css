@@ -15,7 +15,7 @@
 //   margin: -20px 0 50px;
 // } */
 
-.wholeContainer{
+.wholeContainerman{
   display: flex;
   justify-content: center;
   min-height: 100vh;
