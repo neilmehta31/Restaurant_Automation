@@ -48,6 +48,8 @@ export default function Orders() {
   });
   // setSum()
   console.log(tempSum);
+  let tempSum1 = data[0].price+ data[2].price + data[4].price;
+  console.log(tempSum1);
 
   //  const addTotal = (data, byColumn) => {
   //   let keys = Object.keys(data[0]);

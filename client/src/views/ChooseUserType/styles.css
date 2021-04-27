@@ -3,7 +3,7 @@
   justify-content: center;
   min-height: 100vh;
   align-items: center;
-  background-image: url("../../assets/img/food.jpg");
+  background-image: url("../../assets/img/login.jpg");
   background-size: cover;
   opacity: 1;
 }
@@ -24,7 +24,7 @@
 .ztype1 {
   order: -1;
   flex: 1 0 100%;
-  color: #ffffff;
+  color: black;
 }
 .ztype2 {
   z-index: 2;

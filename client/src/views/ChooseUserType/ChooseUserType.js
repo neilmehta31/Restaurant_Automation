@@ -28,7 +28,7 @@ function ChooseUserType(){
     return(
     <div className = "whole" >
         <div>
-        <h1 classname="ztype1">Choose Your User Type</h1>
+        <p classname="ztype1" style = {{fontSize:50, color:'black'}}>Choose Your User Type</p>
         <br></br>
         <br></br>
         <div className="changetoflex">

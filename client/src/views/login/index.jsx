@@ -41,7 +41,7 @@ function Login() {
           useremail = response.data.message.email;
           window.localStorage.setItem("email", email);
           //console.log(response.data.message.email);
-          history.push("/admin/dashboard");
+          history.push("/qr");
           console.log(useremail);
         }
         console.log(response.data.success);
@@ -76,6 +76,7 @@ function Login() {
   // };
 
   return (
+    <div className = "wholeContainer">
     <div className="logincontainer">
       <div>
         <h2 className="loginh2">Customer Login </h2>
@@ -230,6 +231,7 @@ function Login() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
