@@ -3,11 +3,11 @@ import MaterialTable from "material-table";
 import Axios from "axios";
 import { useEffect } from "react";
 import Button from "@material-ui/core/Button";
-import payment from "../Payments/paytm-nodejs/index.js";
-
+// import payment from "../Payments/paytm-nodejs/index.js";
+ 
 export default function Orders() {
   const { useState } = React;
-
+ 
   const [columns, setColumns] = useState([
     { title: "Name", field: "mealName" },
     { title: "Price", field: "price" },
@@ -18,47 +18,43 @@ export default function Orders() {
     //   },
     // { title: 'Birth Year', field: 'Colleges_It_Visited', type: 'numeric' },
   ]);
-
+ 
   const [data, setData] = useState([
     // { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
   ]);
-
+ 
   useEffect(() => {
     getData();
     // addTotal();
   }, []);
-
+ 
   const [sum, setSum] = useState(0);
   const getData = () => {
     Axios.get("https://rest-auto-api.herokuapp.com/api/manager/meals/all").then(
       (response) => {
         console.log(response);
-
+ 
         setData(response.data);
         //   console.log(response.data[0].mealName);
       }
     );
   };
-
+ 
   // console.log(data);
-
+ 
   let tempSum = 0;
   data.map(({ price }) => {
     tempSum += price;
   });
   // setSum()
   console.log(tempSum);
-  // console.log(data[0].price);
-
-  // let tempSum1 = data[0].price+ data[2].price + data[4].price+ data[3].price+ data[1].price;
-  // console.log(tempSum1);
-
+ 
   //  const addTotal = (data, byColumn) => {
   //   let keys = Object.keys(data[0]);
   //   let total = data.reduce((acc, el) => {
   //     return acc += +(el[byColumn]);
   //   }, 0);
-
+ 
   //   let totalRow = {};
   //   let emptyRow = {};
   //   for (let key of keys) {
@@ -73,11 +69,15 @@ export default function Orders() {
   //   }
   //   return [...data, emptyRow, totalRow];
   // }
-
-  const PaymentButton = () => {
-    payment(window.localStorage.getItem("email"), 1, tempSum);
+ 
+  const paymentfunc = () => {
+    window.open(
+      "https://node-paytm.herokuapp.com/_pay/init",
+      "demo",
+      "width=550,height=300,left=150,top=200,toolbar=0,status=0,"
+    );
   };
-
+ 
   return (
     <div>
       <MaterialTable
@@ -138,13 +138,7 @@ export default function Orders() {
       <br />
       <br />
       <center>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={() => {
-            PaymentButton();
-          }}
-        >
+        <Button variant="contained" color="secondary" onClick={paymentfunc}>
           Payment
         </Button>
       </center>
