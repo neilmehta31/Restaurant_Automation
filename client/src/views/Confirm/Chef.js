@@ -2,8 +2,8 @@ import React from "react" ;
 import MaterialTable from "material-table" ;
 import Axios from 'axios';
 import {useEffect} from 'react';
-
-
+ 
+ 
 export default function Chef() {
     const { useState } = React ;
   
@@ -24,13 +24,13 @@ export default function Chef() {
       // { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
       
     ]);
-
+ 
     useEffect(() => {
         getData();
     }, []);
   
     const getData = () => {Axios.get("http://rest-auto-api.herokuapp.com/api/employee/getOrderStatus").then((response) => {
-
+ 
               console.log(response);
   
               setData(response.data.response); 
@@ -38,7 +38,7 @@ export default function Chef() {
        })
       
        };
-
+ 
     //    const addMenu = (e) => {Axios.post("http://rest-auto-api.herokuapp.com/api/manager/meals/add",e).then((response) => {
     //     // console.log(name);
     //     console.log(response);
@@ -46,8 +46,8 @@ export default function Chef() {
     //     console.log(err);
     //   });
     // };
-
-
+ 
+ 
        
     //   const deleteMenu = (e) => {Axios.delete("http://rest-auto-api.herokuapp.com/api/manager/meals/deleteOne",e).then((response) => {
     //     // console.log(e);
@@ -58,8 +58,8 @@ export default function Chef() {
     //     console.log(err);
     //   });
     // };
-
-
+ 
+ 
        
     //   const updateMenu = (e) =>{Axios.put("http://rest-auto-api.herokuapp.com/api/manager/meals/update",e).then((response) => {
     //     // console.log(name);
@@ -82,7 +82,7 @@ export default function Chef() {
         //     new Promise((resolve, reject) => {
         //       setTimeout(() => {
         //         setData([...data, newData]);
-
+ 
         //         addMenu(newData);
                 
         //         resolve();
@@ -99,7 +99,7 @@ export default function Chef() {
         //         console.log(newData);
         //         console.log(index);
         //         updateMenu(newData);
-
+ 
         //         resolve();
         //       }, 1000)
         //     }),
@@ -110,11 +110,11 @@ export default function Chef() {
         //         const index = oldData.tableData.id;
         //         dataDelete.splice(index, 1);
         //         setData([...dataDelete]);
-
+ 
         //         console.log(oldData);
                 
         //         deleteMenu(oldData);
-
+ 
         //         resolve();
         //       }, 1000)
         //     }),
@@ -126,7 +126,10 @@ export default function Chef() {
           },
           rowStyle: {
             backgroundColor: '#DFCFBE',
-          }}}
+          },
+          selection: true,
+        }}
+        onSelectionChange={(rows) => alert('You selected ' + rows.length + ' rows')}
       />
       </div>
     );
