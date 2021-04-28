@@ -3,8 +3,9 @@ import MaterialTable from "material-table";
 import Axios from "axios";
 import { useEffect } from "react";
 import Button from "@material-ui/core/Button";
+
 // import payment from "../Payments/paytm-nodejs/index.js";
- 
+
 export default function Orders() {
   const { useState } = React;
  
@@ -69,6 +70,7 @@ export default function Orders() {
   //   }
   //   return [...data, emptyRow, totalRow];
   // }
+
  
   const paymentfunc = () => {
     window.open(
@@ -78,6 +80,7 @@ export default function Orders() {
     );
   };
  
+
   return (
     <div>
       <MaterialTable
@@ -138,7 +141,13 @@ export default function Orders() {
       <br />
       <br />
       <center>
-        <Button variant="contained" color="secondary" onClick={paymentfunc}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => {
+              paymentfunc();
+          }}
+        >
           Payment
         </Button>
       </center>
