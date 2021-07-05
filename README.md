@@ -5,8 +5,8 @@ The app has 2 folders namely, the client and the Backend folders. The backend an
 
 <br/><br/>
 Contributors : 
->[Neil Mehta (Product Owner cum Developer)]("https://github.com/neilmehta31")<br/>
->[Atishay Jain (Scrum Master cum Developer)]("https://github.com/mveer1")<br/>
->[Sahaj Gupta (Frontend Developer)]("https://github.com/MuditSharma29")<br/>
->[Pranav Jibhakate (Frontend Developer)]("https://github.com/Sudhanshu-Chhajed")<br/>
->[Barun Agrawal (Frontend Developer)]("https://github.com/Sudhanshu-Chhajed")<br/>
+>Neil Mehta (Product Owner cum Developer)<br/>
+>Atishay Jain (Scrum Master cum Developer)<br/>
+>Sahaj Gupta (Frontend Developer)<br/>
+>Pranav Jibhakate (Frontend Developer)<br/>
+>Barun Agrawal (Frontend Developer)<br/>
