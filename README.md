@@ -1,6 +1,6 @@
 # Restaurant_Automation
 > NOTE : There exists a bug in our deployed website. You need to reload everytime you click on a button. We weren't able to fix the bug. If anyone by any chance is able to find the solution to this please hit me up!.
-> Mostly the bug is due to some configurations in the react part of the code.
+> Mostly the bug is due to some configurations of react-router-dom.
 
 
 Restraurant automation MERN Stack project for the course IS F341 Software Engineering at BITS Pilani Hyderabad campus under Prof. Narasimha Bolloju.
